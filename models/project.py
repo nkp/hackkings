@@ -33,8 +33,18 @@ class Project(db.Model):
 
     def add_developer(self, id):
         dev = User.query.filter_by(id = id).first()
-        self.developers.append(dev)
-        db.session.commit()
+        if dev != None:
+            self.developers.append(dev)
+            self.state = STATES.ONGOING
+            db.session.commit()
+
+    def remove_developer(self, id):
+        dev = self.developers.query.filter_by(id = id).first()
+        if dev != None:
+            self.developers.remove(dev)
+            if !self.developers.query.all():
+                self.state = STATES.PENDING
+            db.session.commit()
 
     def find(self, id):
         return Project.filter_by(id = id).first()
@@ -45,5 +55,5 @@ class Project(db.Model):
     def get_current_developers(self):
         return self.developers.query.all()
 
-    def find_all_current_projects(self):
+    def get_all_current_projects(self):
         return Project.filter_by(or_(state = STATES.ONGOING, state = STATES.PENDING)).all() # Could be made more efficient by selecting only required columns
