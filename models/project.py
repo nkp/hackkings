@@ -36,3 +36,9 @@ class Project(db.Model):
 
     def find(self, id):
         return Project.filter_by(id = id).first()
+
+    def get_skills(self):
+        return self.skills.query.all()
+
+    def get_curren_developers(self):
+        return self.developers.query.all()    
