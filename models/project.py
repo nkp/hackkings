@@ -7,7 +7,7 @@ class Project(db.Model):
     name = db.Column(db.String(80), unique=True)
     completed = db.Column(db.Boolean, unique=False)
     #developers is back reffed
-    state = db.Column(db.Integer, db.ForeignKey('state.id'))
+    state = db.Column(db.Integer, unique = False)
     proposer = db.Column(db.Integer, db.ForeignKey('user.id'))
     description = db.Column(db.Text, unique=False)
     #skills are back reffed
@@ -27,3 +27,5 @@ class Project(db.Model):
 
     def __repr__(self):
         return '<Project %r>' % self.type
+
+    def add_developer()
