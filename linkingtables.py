@@ -15,3 +15,8 @@ skill_users_link = db.Table('skill_user_link',
     db.Column('skill_id', db.Integer, db.ForeignKey('skill.id')),
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
 )
+
+thread_link = db.Table('members', 
+    db.Column('thread_id', db.Integer, db.ForeignKey('message_thread.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
+)
