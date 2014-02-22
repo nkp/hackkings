@@ -42,7 +42,7 @@ class Project(db.Model):
         dev = self.developers.query.filter_by(id = id).first()
         if dev != None:
             self.developers.remove(dev)
-            if !self.developers.query.all():
+            if not self.developers.query.all():
                 self.state = STATES.PENDING
             db.session.commit()
 
