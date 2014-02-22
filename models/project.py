@@ -28,4 +28,5 @@ class Project(db.Model):
     def __repr__(self):
         return '<Project %r>' % self.type
 
-    def add_developer()
+    def add_developer():
+        pass
