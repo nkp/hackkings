@@ -16,17 +16,14 @@ class Project(db.Model):
     difficulty = db.Column(db.Integer, unique=False)
     attachments = db.relationship('Attachment', backref='project', lazy='dynamic')
 
-    def __init__(self, name,developers,completed,state,proposer,description,skills_needed,time_estimate,difficulty,attachments):
+    def __init__(self, name,completed,state,proposer,description,time_estimate,difficulty):
         self.name = name
-        self.developers = developers
         self.completed = completed
         self.state = state
         self.proposer = proposer
         self.description = description
-        self.skills_needed = skills_needed
         self.time_estimate = time_estimate
         self.difficulty = difficulty
-        self.attachments = attachments
 
     def __repr__(self):
         return '<Project %r>' % self.type
