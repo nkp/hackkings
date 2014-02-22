@@ -1,6 +1,8 @@
 from hackkings.models import Attachment
 from hackkings.models import User
 from hackkings import db
+from sqlalchemy import or_
+from hackkings.constants import STATES
 
 class Project(db.Model):
     __tablename__ = "project"
@@ -41,4 +43,7 @@ class Project(db.Model):
         return self.skills.query.all()
 
     def get_current_developers(self):
-        return self.developers.query.all()    
+        return self.developers.query.all()
+
+    def find_all_current_projects(self):
+        return Project.filter_by(or_(state = STATES.ONGOING, state = STATES.PENDING)).all() # Could be made more efficient by selecting only required columns
