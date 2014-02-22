@@ -1,10 +1,7 @@
 from hackkings.models.user import User
 from hackkings import db
+from hackkings.linkingtables import thread_link
 
-thread_link = db.Table('members', 
-    db.Column('thread_id', db.Integer, db.ForeignKey('message_thread.id')),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
-)
 
 class MessageThread(db.Model):
     __tablename__ = 'message_thread'
