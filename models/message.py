@@ -12,7 +12,7 @@ Class Message(db.Model):
         self.message = message
 
     def __repr__(self):
-        return '<Post %r>' % self.message
+        return '<Message %r>' % self.message
 
     def validate__content(content):
         if len(content) > 5000
