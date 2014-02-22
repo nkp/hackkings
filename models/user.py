@@ -1,9 +1,5 @@
-from models.role import Role
-
-projectslink = db.Table('projects',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('project_id', db.Integer, db.ForeignKey('project.id'))
-)
+from hackkings.models.role import Role
+from hackkings.linkingtables import userprojectlink
 
 class User(db.Model):
     __tablename__ = "user"
@@ -18,7 +14,7 @@ class User(db.Model):
     role = db.Column(db.Integer, db.ForeignKey('role.id'))
     
     # Developer stuff
-    projects = db.relationship('Project', secondary=projectslink, backref=db.backref('users', lazy='dynamic'))
+    projects = db.relationship('Project', secondary=userprojectlink, backref=db.backref('users', lazy='dynamic'))
 
     # Proposer stuff
     #proposals = 
