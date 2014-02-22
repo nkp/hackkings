@@ -1,4 +1,4 @@
-Class Message(db.Model):
+class Message(db.Model):
     __tablename__ = "message"
     thread_id = db.Column(db.Integer, db.ForeignKey('thread.id')
     thread = db.relationship('Thread', backref='threads', lazy='dynamic')
