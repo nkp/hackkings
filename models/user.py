@@ -16,6 +16,7 @@ class User(db.Model):
 
     projects = db.relationship('Project', secondary=developer_project_link, backref=db.backref('developers', lazy='dynamic'))
     proposals = db.relationship('Project', backref='proposer', lazy='dynamic')
+    messages_sent = db.relationship('Message', backref='sender', lazy='dynamic')
 
     def __init__(self, username, email, name, avatar, role, bio):
         self.username = username
@@ -56,7 +57,7 @@ class User(db.Model):
             pass # Maybe it should return an error
 
     def add_skill(self, skill_obj):
-        if self.skills.query.filter_by(id = skill_obj.id).first() == None:
+        if self.skills.filter_by(id = skill_obj.id).first() == None:
             self.skills.append(skill_obj)
             db.session.commit()
         else:

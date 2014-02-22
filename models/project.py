@@ -9,7 +9,7 @@ class Project(db.Model):
     completed = db.Column(db.Boolean, unique=False)
     #developers is back reffed
     state = db.Column(db.Integer, unique = False)
-    proposer = db.Column(db.Integer, db.ForeignKey('user.id'))
+    proposer_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     description = db.Column(db.Text, unique=False)
     #skills are back reffed
     #time in hours
@@ -40,5 +40,5 @@ class Project(db.Model):
     def get_skills(self):
         return self.skills.query.all()
 
-    def get_curren_developers(self):
+    def get_current_developers(self):
         return self.developers.query.all()    

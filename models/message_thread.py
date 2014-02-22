@@ -6,8 +6,9 @@ from hackkings.linkingtables import thread_link
 class MessageThread(db.Model):
     __tablename__ = 'message_thread'
     id = db.Column(db.Integer, primary_key=True)
-    members = db.relationship('Thread', secondary=thread_link, 
-                                        backref=db.backref('users', lazy='dynamic')) 
+    messages = db.relationship('Message', backref='thread', lazy='dynamic')
+    members = db.relationship('User', secondary=thread_link, 
+                                        backref=db.backref('threads', lazy='dynamic')) 
     
     def __init__(self):
         pass
