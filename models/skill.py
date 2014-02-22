@@ -1,6 +1,6 @@
 from hackkings import db
-from hackkings.models.project import Project
-from hackkings.models.user import User
+from hackkings.models import Project
+from hackkings.models import User
 from hackkings.linkingtables import skill_projects_link, skill_users_link
 
 class Skill(db.Model):

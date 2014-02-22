@@ -1,5 +1,5 @@
-from hackkings.models.attachment import Attachment
-from hackkings.models.user import User
+from hackkings.models import Attachment
+from hackkings.models import User
 from hackkings import db
 
 class Project(db.Model):

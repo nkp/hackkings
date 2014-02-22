@@ -1,4 +1,4 @@
-from hackkings.models.user import User
+from hackkings.models import User
 from hackkings import db
 from hackkings.linkingtables import thread_link
 

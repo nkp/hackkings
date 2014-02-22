@@ -1,5 +1,5 @@
 from hackkings import db
-from hackkings.models.project import Skill
+from hackkings.models import Skill
 from hackkings.linkingtables import developer_project_link, skill_users_link
 from hackkings.constants import STATES, ROLES
 
