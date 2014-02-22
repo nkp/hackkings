@@ -1,6 +1,6 @@
 from hackkings import db
 from hackkings.models.role import Role
-from hackkings.linkingtables import userprojectlink
+from hackkings.linkingtables import user_project_link, skill_users_link
 
 class User(db.Model):
     __tablename__ = "user"
@@ -9,18 +9,14 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True)
     name = db.Column(db.String(80), unique=False)
     avatar = db.Column(db.Text, unique=False)
-    interests = db.Column(db.Text, unique=False)
-
-    #skills = 
     role = db.Column(db.Integer, db.ForeignKey('role.id'))
-    
-    # Developer stuff
-    projects = db.relationship('Project', secondary=userprojectlink, backref=db.backref('users', lazy='dynamic'))
+    # skills are backrefed
+    bio = db.Column(db.Text, unique=False)
 
-    # Proposer stuff
-    #proposals = 
+    projects = db.relationship('Project', secondary=developer_project_link, backref=db.backref('developers', lazy='dynamic'))
+    proposals = db.relationship('Project', backref='proposer', lazy='dynamic')
 
-    def __init__(self, username, email, name, role):
+    def __init__(self, username, email, name, avatar, role, skills, interests):
         self.username = username
         self.email = email
         self.name = name
@@ -28,3 +24,17 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+    def get_completed_proposals():
+
+
+    def get_ongoing_proposals():
+
+
+    def get_pending_proposals():
+
+
+    def get_ongoing_projects():
+
+
+    def get_completed_projects():

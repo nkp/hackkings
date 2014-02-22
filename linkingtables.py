@@ -1,4 +1,4 @@
-userprojectlink = db.Table('userprojectlink',
+developer_project_link = db.Table('user_project_link',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('project_id', db.Integer, db.ForeignKey('project.id'))
 )

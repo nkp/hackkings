@@ -7,7 +7,7 @@ def configure(app):
     configuredb(app)
 
 def configuredb(app):
-	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////./test.db'
 
 def hook_routes():
     from hackkings import views
