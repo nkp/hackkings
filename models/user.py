@@ -1,5 +1,5 @@
 from hackkings import db
-from hackkings.models.project import Project
+from hackkings.models.project import Project, Skill
 from hackkings.linkingtables import developer_project_link, skill_users_link
 from hackkings.constants import STATES, ROLES
 
@@ -45,3 +45,23 @@ class User(db.Model):
 
     def find(self, id):
         return User.filter_by(id = id).first()
+
+    def add_skill_id(self, skill_id):
+        skill_obj = Skill.query.filter_by(id = skill_id).first()
+        if skill_obj != None:
+            if self.skills.query.filter_by(id = skill_obj.id).first() == None:
+                self.skills.append(skill_obj)
+                db.session.commit()
+        else:
+            pass # Maybe it should return an error
+
+    def add_skill(self, skill_obj):
+        if self.skills.query.filter_by(id = skill_obj.id).first() == None:
+            self.skills.append(skill_obj)
+            db.session.commit()
+
+    def remove_skill_id(self, skill_id):
+        pass
+
+    def remove_skill(self, skill_obj):
+        pass
