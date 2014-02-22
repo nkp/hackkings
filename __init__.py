@@ -2,13 +2,22 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from hackkings.constants import SITENAME
 
+import os
+import sys
+
 def configure(app):
     app.debug = True
     hook_routes()
     configuredb(app)
 
 def configuredb(app):
-	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////./test.db'
+    path = ''
+    if os.name == 'nt':
+        path = 'sqlite:///C:\\database.db'
+    else:
+        path = 'sqlite:////tmp/database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = path
+
 
 def configure_jinja(app):
     @app.context_processor
@@ -21,4 +30,8 @@ def hook_routes():
 app = Flask(__name__)
 
 configure(app)
+
 db = SQLAlchemy(app)
+import hackkings.models
+
+db.create_all()
