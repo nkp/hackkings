@@ -43,5 +43,5 @@ class User(db.Model):
     def get_completed_projects(self):
         return self.projects.query.filter_by(state = STATES.COMPLETED).all()
 
-    def find(id):
+    def find(self, id):
         return User.filter_by(id = id).first()
