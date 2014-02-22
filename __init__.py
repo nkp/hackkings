@@ -22,7 +22,7 @@ def configuredb(app):
 def configure_jinja(app):
     @app.context_processor
     def inject_sitename():
-        return {'SITENAME':SITENAME}
+        return dict(SITENAME=SITENAME)
 
 def hook_routes():
     from hackkings import views
@@ -34,5 +34,6 @@ configure(app)
 db = SQLAlchemy(app)
 import hackkings.models
 
+db.drop_all()
 db.create_all()
 import dummydata

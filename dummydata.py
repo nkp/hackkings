@@ -4,7 +4,7 @@ from hackkings.models import User,Skill,Project
 
 sachin = User("sazap10", "sazap10@gmail.com", "Sachin Pande", "link", ROLES.PROPOSER , "some bio yo")
 db.session.add(sachin)
-andrew = User("southrop", "southrop113@gmail.com", "Andrew Li", "link", ROLES.BOTH , "some bio yo")
+andrew = User("southrop", "southrop113@gmail.com", "Andrew Li", "link", ROLES.DEVELOPER , "some bio yo")
 db.session.add(andrew)
 nic = User("nic", "nick@gmail.com", "Nic", "link", ROLES.DEVELOPER , "some bio yo")
 db.session.add(nic)

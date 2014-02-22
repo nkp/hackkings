@@ -60,9 +60,24 @@ class User(db.Model):
         if self.skills.filter_by(id = skill_obj.id).first() == None:
             self.skills.append(skill_obj)
             db.session.commit()
+        else:
+            pass # Maybe it should return an error
+
+    def get_skills(self):
+        return self.skills.query.all()
 
     def remove_skill_id(self, skill_id):
-        pass
+        skill_obj = Skill.query.filter_by(id = skill_id).first()
+        if skill_obj != None:
+            if self.skills.query.filter_by(id = skill_obj.id).first() != None:
+                self.skills.remove(skill_obj)
+                db.session.commit()
+        else:
+            pass # Maybe it should return an error
 
     def remove_skill(self, skill_obj):
-        pass
+        if self.skills.query.filter_by(id = skill_obj.id).first() != None:
+            self.skills.remove(skill_obj)
+            db.session.commit()
+        else:
+            pass # Maybe it should return an error
