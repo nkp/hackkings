@@ -1,3 +1,5 @@
+from hackkings import db
+
 class Attachment(db.Model):
     __tablename__ = 'attachment'
     id = db.Column(db.Integer, primary_key=True)
