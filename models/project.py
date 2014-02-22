@@ -56,4 +56,4 @@ class Project(db.Model):
         return self.developers.query.all()
 
     def get_all_current_projects(self):
-        return Project.filter_by(or_(state = STATES.ONGOING, state = STATES.PENDING)).all() # Could be made more efficient by selecting only required columns
+        return Project.filter(or_(state == STATES.ONGOING, state == STATES.PENDING)).all() # Could be made more efficient by selecting only required columns
