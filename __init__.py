@@ -35,3 +35,4 @@ db = SQLAlchemy(app)
 import hackkings.models
 
 db.create_all()
+import dummydata
