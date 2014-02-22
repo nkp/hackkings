@@ -1,3 +1,4 @@
+from hackkings import db
 from hackkings.models.role import Role
 from hackkings.linkingtables import userprojectlink
 
