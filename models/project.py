@@ -1,4 +1,5 @@
 from hackkings.models.attachment import Attachment
+from hackkings.models.user import User
 from hackkings import db
 
 class Project(db.Model):
@@ -28,5 +29,10 @@ class Project(db.Model):
     def __repr__(self):
         return '<Project %r>' % self.type
 
-    def add_developer():
-        pass
+    def add_developer(self, id):
+        dev = User.query.filter_by(id = id).first()
+        self.developers.append(dev)
+        db.session.commit()
+
+    def find(self, id):
+        return Project.filter_by(id = id).first()
