@@ -1,8 +1,12 @@
-Class Message(db.Model):
+from hackkings import db
+from hackkings.models import MessageThread
+
+class Message(db.Model):
     __tablename__ = "message"
-    thread_id = db.Column(db.Integer, db.ForeignKey('thread.id')
+    id = db.Column(db.Integer, primary_key=True)
+    thread_id = db.Column(db.Integer, db.ForeignKey('message_thread.id'))
     thread = db.relationship('Thread', backref='threads', lazy='dynamic')
-    sender_id = db.Column(db.Integer, db.ForeignKey('sender.id')
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     sender = db.relationship('User', backref='messages_sent', lazy='dynamic')
     message = db.Column(db.Text)
 
@@ -15,5 +19,5 @@ Class Message(db.Model):
         return '<Message %r>' % self.message
 
     def validate__content(content):
-        if len(content) > 5000
+        if len(content) > 5000:
             raise ValidationError('To be implemented')

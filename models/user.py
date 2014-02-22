@@ -1,6 +1,6 @@
 from hackkings import db
 from hackkings.models.role import Role
-from hackkings.linkingtables import user_project_link, skill_users_link
+from hackkings.linkingtables import developer_project_link, skill_users_link
 
 class User(db.Model):
     __tablename__ = "user"
@@ -26,15 +26,16 @@ class User(db.Model):
         return '<User %r>' % self.username
 
     def get_completed_proposals():
-
+        pass
 
     def get_ongoing_proposals():
-
+        pass
 
     def get_pending_proposals():
 
-
+        pass
     def get_ongoing_projects():
 
-
+        pass
     def get_completed_projects():
+        pass
