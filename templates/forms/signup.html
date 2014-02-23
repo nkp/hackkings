@@ -1,0 +1,15 @@
+
+{% from "macros.html" import render_input, render_action %}
+<h2 style="margin-bottom:10px;">Sign Up!</h2>
+<form class='form-stacked' method="POST" action="{{ url_for('signup') }}">
+    {{ signup_form.hidden_tag() }}
+    {{ signup_form.next }}
+    <fieldset>
+        <legend>Already have account? <a href="{{ url_for('login') }}">Login</a> please.</legend>
+        {{ render_input(signup_form.name, 'xlarge') }}
+        {{ render_input(signup_form.username, 'xlarge') }}
+        {{ render_input(signup_form.email, 'xlarge') }}
+        {{ render_input(signup_form.password, 'xlarge') }}
+        {{ render_action(signup_form.submit) }}
+    </fieldset>
+</form>

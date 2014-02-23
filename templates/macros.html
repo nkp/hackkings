@@ -1,0 +1,52 @@
+
+{% macro render_errors(field) %}
+    {% if field.errors %}
+        {% for error in field.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_input(field, cls='') %}
+<div class='control-group {% if field.errors %}error{% endif %}'>
+    <div class="control-label">{{ field.label }}</div>
+    <div class='control'>
+        {% if field.errors %}
+        {{ field(class_=cls~' error') }}
+        {% else %}
+        {{ field(class_=cls) }}
+        {% endif %}
+        <span class="help-inline">
+            {% for error in field.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </span>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_action(field) %}
+    <div class='control-group'>
+        <div class="control">
+            {{ field(class_='btn primary') }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_flash_message() %}
+    {% block flash_message %}
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            <div id='flash_message_container'>
+                {% for category, msg in messages %}
+                    <div class="alert alert-{{ category }}" data-alert>
+                      <a class="close" href="#">Ã—</a>
+                      <p>{{ msg }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+    {% endblock %}
+{% endmacro %}
+
