@@ -19,11 +19,6 @@ class SettingsForm(Form):
         if len(field.data) > 5000:
             return ValidationError('Biography too long')
 
-    def validate_username(form, field):
-        u = User.find_by_username(field.data)
-        if u and u != current_user:
-            raise ValidationError('That username has already been taken')
-
     def validate_email(form, field):
         u = User.find_by_email(field.data)
         if u and u != current_user:

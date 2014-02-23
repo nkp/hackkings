@@ -46,7 +46,7 @@ class User(db.Model, UserMixin):
         db.session.commit()
 
     def set_email(self, email):
-        self.username = email
+        self.email = email
         db.session.commit()
 
     def set_role(self, rol):
