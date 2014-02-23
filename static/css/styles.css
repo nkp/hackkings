@@ -48,3 +48,17 @@ a.nope, a.nope:hover {
 #codecademy_badges{
     padding: 5px;
 }
+div.achievement{
+    display: inline-block;
+    width: 100%;
+    height: 170px;
+}
+
+.badge img{
+    display: inline-block!important;
+    position: relative;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
