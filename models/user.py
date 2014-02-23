@@ -120,3 +120,9 @@ class User(db.Model, UserMixin):
             db.session.commit()
         else:
             pass # Maybe it should return an error
+
+    def is_proposer(self):
+        return self.role == ROLES.PROPOSER
+
+    def is_developer(self):
+        return self.role == ROLES.DEVELOPER
