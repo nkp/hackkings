@@ -1,14 +1,14 @@
 
 {% from "macros.html" import render_input, render_action %}
-<h2 style="margin-bottom:10px;">Propose Project!</h2>
+<h2 style="margin-bottom:10px;">Propose a project</h2>
 <form class='form-stacked' method="POST" action="/project/new">
     {{ signup_form.hidden_tag() }}
     {{ signup_form.next }}
     <fieldset>
-        {{ render_input(signup_form.name, 'xlarge') }}
-        {{ render_input(signup_form.description, 'xlarge') }}
-        {{ render_input(signup_form.time_estimate, 'xlarge') }}
-        {{ render_input(signup_form.difficulty, 'xlarge') }}
+        {{ render_input(signup_form.name, 'form-control') }}
+        {{ render_input(signup_form.description, 'form-control') }}
+        {{ render_input(signup_form.time_estimate, 'form-control') }}
+        {{ render_input(signup_form.difficulty, 'form-control') }}
         {{ render_action(signup_form.submit) }}
     </fieldset>
 </form>

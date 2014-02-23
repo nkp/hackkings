@@ -4,12 +4,12 @@
     {{ signup_form.hidden_tag() }}
     {{ signup_form.next }}
     <fieldset>
-        <legend>Already have account? <a href="/login">Login</a> please.</legend>
-        {{ render_input(signup_form.name, 'xlarge') }}
-        {{ render_input(signup_form.username, 'xlarge') }}
-        {{ render_input(signup_form.email, 'xlarge') }}
-        {{ render_input(signup_form.password, 'xlarge') }}
-        {{ render_input(signup_form.role) }}
+        <p class="help-block text-right">Already have account? Sign in <a href="/login">here</a></p>
+        {{ render_input(signup_form.name, 'form-control') }}
+        {{ render_input(signup_form.username, 'form-control') }}
+        {{ render_input(signup_form.email, 'form-control') }}
+        {{ render_input(signup_form.password, 'form-control') }}
+        {{ render_input(signup_form.role, 'radio') }}
         {{ render_action(signup_form.submit) }}
     </fieldset>
 </form>
