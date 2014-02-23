@@ -1,0 +1,19 @@
+
+{% from "macros.html" import render_input, render_action %}
+
+
+<form class='form-stacked' method="POST" action="/profile/settings">
+    {{ settings_form.hidden_tag() }}
+    {{ settings_form.next }}
+    <fieldset>
+        <legend>Already have account? <a href="/login">Login</a> please.</legend>
+        {{ render_input(settings_form.name, 'xlarge') }}
+        {{ render_input(settings_form.email, 'xlarge') }}
+        {{ render_input(settings_form.password, 'xlarge') }}
+        {{ render_input(settings_form.avatar) }}
+        {{ render_input(settings_form.bio) }}
+        {{ render_input(settings_form.code_academy_username) }}
+        {{ render_input(settings_form.skills) }}
+        {{ render_action(settings_form.submit) }}
+    </fieldset>
+</form>
