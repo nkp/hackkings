@@ -50,6 +50,7 @@ def project_page(id=None):
     
     project_data = { 'name': project.name,
                      'id': project.id,
+                     'state': project.state,
                      'proposer': project.proposer,
                      'difficulty': project.difficulty,
                      'time_estimate': project.time_estimate,
