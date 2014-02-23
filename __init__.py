@@ -7,6 +7,7 @@ import sys
 
 def configure(app):
     app.debug = True
+    app.config['SECRET_KEY'] = 'hello'
     hook_routes()
     configuredb(app)
 

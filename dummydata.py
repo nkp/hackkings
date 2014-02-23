@@ -2,13 +2,13 @@ from hackkings import db
 from hackkings.constants import ROLES, STATES
 from hackkings.models import User,Skill,Project
 
-sachin = User("sazap10", "sazap10@gmail.com", "Sachin Pande", "link", ROLES.PROPOSER , "some bio yo")
+sachin = User("sazap10", "sazap10@gmail.com", "password", ROLES.PROPOSER, "Sachin Pande", "link", "some bio yo")
 db.session.add(sachin)
-andrew = User("southrop", "southrop113@gmail.com", "Andrew Li", "link", ROLES.DEVELOPER , "some bio yo")
+andrew = User("southrop", "southrop113@gmail.com", "hunter2", ROLES.DEVELOPER, "Andrew Li", "link",  "some bio yo")
 db.session.add(andrew)
-nic = User("nic", "nick@gmail.com", "Nic", "link", ROLES.DEVELOPER , "some bio yo")
+nic = User("nic", "nick@gmail.com", "password", ROLES.DEVELOPER, "Nic", "link", "some bio yo")
 db.session.add(nic)
-Ilija= User("Ilija", "Ilija@gmail.com", "Ilija Radosavovic", "link", ROLES.DEVELOPER , "some bio yo")
+Ilija= User("Ilija", "Ilija@gmail.com", "letmein", ROLES.DEVELOPER, "Ilija Radosavovic", "link", "some bio yo")
 db.session.add(Ilija)
 db.session.commit()
 someSkills = ["java", "c++","js", "c", "python", "web dev"]
