@@ -43,7 +43,7 @@
               <div class="row">
                 <div class="col-md-12">
                   {% if project.currently_working != [] %}<div>
-                    {% for developer in project.currently_working %}<span class="label label-danger"><a href="/profile/{{ developer.id }}">{{ developer.username }}</a></span> {% endfor %}
+                    {% for developer in project.currently_working %}<span class="label label-default"><a href="/profile/{{ developer.id }}"  style="color:#FFF;">{{ developer.username }}</a></span> {% endfor %}
                   </div>{% else %}<!-- No one is working on this project --><span class="">None</span>{% endif %}
                 </div>
               </div>
