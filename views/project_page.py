@@ -15,11 +15,9 @@ def project_apply():
     
 
     new_thread = MessageThread.create([project.proposer, current_user])
-    initial_message = Message(new_thread, current_user, 'Hi! I would like to work on your project!')
+    initial_message = Message.create(new_thread, current_user, 'Hi! I would like to work on your project!')
 
     project.add_developer(current_user)
-
-    
 
 
 @app.route('/project/<int:id>')
