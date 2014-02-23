@@ -31,7 +31,11 @@
               </div>
             </div>
             <div class="panel-footer">
-              <a href="/project/{{ project.id }}/apply" class="{% if current_user in project.currently_working %}disabled{% endif %} btn btn-block btn-success" role="button">Apply</a>
+              {% if current_user in project.currently_working %}
+                <a href="/project/{{ project.id }}/unapply" class="btn btn-block btn-primary" role="button">Unapply</a>
+              {% else %}
+                <a href="/project/{{ project.id }}/apply" class="{% if current_user in project.currently_working %}disabled{% endif %} btn btn-block btn-success" role="button">Apply</a>
+              {% endif %}
             </div>
           </div>
 
