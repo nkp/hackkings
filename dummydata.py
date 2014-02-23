@@ -20,6 +20,6 @@ map(nic.add_skill, skillObjects)
 map(Ilija.add_skill, skillObjects)
 names = ["project", "awesome project", "even awesomer project", "super awesome project","super duper awesomer project"]
 for name in names:
-    project = Project(name, STATES.ONGOING, sachin, "some awesome project description", "9000", "0")
+    project = Project(name, sachin, "some awesome project description", "9000", "0")
     db.session.add(project)
 db.session.commit()
