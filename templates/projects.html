@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-      <div class="content">
+      <div class="content col-md-8 col-md-offset-2">
         {% for project in project_list %}
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -13,7 +13,7 @@
             {{ project.description }}
           </div>
           {% if project.get_skills() != [] %}<div class="panel-footer">
-              {% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}
+              {% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> <span class="pull-right">Proposed by <a href="/profile/{{ project.proposer.id }}">{{ project.proposer.username }}</a></span>{% endfor %}
           </div>{% else %}<!-- No skills -->{% endif %}
         </div>
         {% endfor %}

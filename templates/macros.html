@@ -8,7 +8,7 @@
 {% endmacro %}
 
 {% macro render_input(field, cls='') %}
-<div class='control-group {% if field.errors %}error{% endif %}'>
+<div class='form-group {% if field.errors %}error{% endif %}'>
     <div class="control-label">{{ field.label }}</div>
     <div class='control'>
         {% if field.errors %}
@@ -26,9 +26,9 @@
 {% endmacro %}
 
 {% macro render_action(field) %}
-    <div class='control-group'>
+    <div class='form-group'>
         <div class="control">
-            {{ field(class_='btn primary') }}
+            {{ field(class_='btn btn-block btn-primary') }}
         </div>
     </div>
 {% endmacro %}
