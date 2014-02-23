@@ -31,8 +31,8 @@ class User(db.Model, UserMixin):
     role = db.Column(db.Integer, unique=False) # If we can, limit this to the roles defined in constants
     # skills are backrefed
     bio = db.Column(db.Text, unique=False)
-    code_academy_username = db.Column(db.String(30), unique=False)
-    code_academy_fetch_time = db.Column(db.DateTime, unique=True, default=lambda ctx: datetime.utcnow() - DAY_DELTA*2)
+    code_academy_username = db.Column(db.String(30), unique=True)
+    code_academy_fetch_time = db.Column(db.DateTime, unique=False, default=lambda ctx: datetime.utcnow() - DAY_DELTA*2)
     _code_academy_badges = db.Column(db.Text, unique=False)
 
     projects = db.relationship('Project', secondary=developer_project_link, lazy='dynamic', backref=db.backref('developers', lazy='dynamic'))
