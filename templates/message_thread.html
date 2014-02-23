@@ -2,17 +2,21 @@
 
 {% block content %}
   <div class="content">
-    {% for m in messages %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{ m.sender }}</h3> <small>{{ m.time | prettydate }}</small>
-      </div>
-      <div class="panel-body">
-        {{ m.message }}
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        {% for m in messages %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ m.sender }}</h3> <small>{{ m.time | prettydate }}</small>
+          </div>
+          <div class="panel-body">
+            {{ m.message }}
+          </div>
+        </div>
+        {% else %}
+          <h2> No messages </h2> 
+        {% endfor %}
       </div>
     </div>
-    {% else %}
-      <h2> No messages </h2> 
-    {% endfor %}
   </div>
 {% endblock %}

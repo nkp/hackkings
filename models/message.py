@@ -20,10 +20,11 @@ class Message(db.Model):
     def create(cls, thread, sender, message):
         new_message = Message(thread, sender, message)
         db.session.add(new_message)
+        thread.messages.append(new_message)
         db.session.commit()
 
     def __repr__(self):
-        return '<Message %r>' % self.message
+        return '<Message %r at %r>' % (self.message, str(self.time))
 
     def validate_content(content):
         if len(content) > 5000:

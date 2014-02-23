@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <table class="table table-striped">
+        <tr><th>Group</th><th>Last Message</th><th>Time</th></tr>
+        {% for thread in threads %}
+        <tr>
+          <td>
+            <a href="/message_thread/{{ thread.id }}">
+            {% for member in thread %}
+              {% if loop.index <= 3 %} 
+                {{ member }}
+                {% if loop.index == 3 %}
+                ...
+                {% else %}
+                ,
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            </a>
+          </td>
+          <td>
+            <a href="/message_thread/{{ thread.id }}">
+            {{ thread.messages[-1] | truncate(20) }}
+          </a>
+          </td>
+          <td>
+            <a href="/message_thread/{{ thread.id }}">
+            {{ thread.messages[-1].time | prettydate }}
+          </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
