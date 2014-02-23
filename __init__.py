@@ -2,6 +2,7 @@ from flask import Flask, redirect, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from hackkings.constants import SITENAME
 from flask_login import LoginManager, current_user
+from hackkings import constants
 
 import os
 import sys
@@ -40,6 +41,10 @@ def configure_jinja(app):
     @app.context_processor
     def inject_path():
         return dict(PATH=request.path)
+
+    @app.context_processor
+    def inject_constants():
+        return dict(CONSTANTS=constants)
 
     @app.context_processor
     def inject_authenticated():

@@ -5,8 +5,21 @@ from hackkings.constants import STATES, ROLES, BCRYPT_HASH_LENGTH
 from hackkings.utils import hash_password, check_password
 from flask_login import UserMixin
 from sqlalchemy import or_
-
+from datetime import datetime, timedelta
+from threading import Thread
 from werkzeug.security import safe_str_cmp
+from hackkings.utils import CodeAcademyQueue
+
+class RunLater(Thread):
+    def __init__(self, foo):
+        self.func = foo
+
+    def run(self):
+        self.func()
+
+
+DAY_DELTA = timedelta(1)
+
 class User(db.Model, UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
@@ -18,8 +31,11 @@ class User(db.Model, UserMixin):
     role = db.Column(db.Integer, unique=False) # If we can, limit this to the roles defined in constants
     # skills are backrefed
     bio = db.Column(db.Text, unique=False)
+    code_academy_username = db.Column(db.String(30), unique=True)
+    code_academy_fetch_time = db.Column(db.DateTime, unique=False, default=lambda ctx: datetime.utcnow() - DAY_DELTA*2)
+    _code_academy_badges = db.Column(db.Text, unique=False)
 
-    projects = db.relationship('Project', secondary=developer_project_link, backref=db.backref('developers', lazy='dynamic'))
+    projects = db.relationship('Project', secondary=developer_project_link, lazy='dynamic', backref=db.backref('developers', lazy='dynamic'))
     proposals = db.relationship('Project', backref='proposer', lazy='dynamic')
     messages_sent = db.relationship('Message', backref='sender', lazy='dynamic')
 
@@ -31,6 +47,14 @@ class User(db.Model, UserMixin):
         self.avatar = avatar
         self.role = role
         self.bio = bio
+
+    def add_code_academy_username(self, code_academy_username):
+        self.code_academy_username = code_academy_username
+
+    def get_code_academy_badges(self):
+        if datetime.utcnow() > self.code_academy_fetch_time - DAY_DELTA:
+            CodeAcademyQueue.put(self)
+        return self._code_academy_badges
 
     @classmethod
     def create(cls, username, email, password, role):
@@ -55,19 +79,19 @@ class User(db.Model, UserMixin):
         return '<User %r>' % self.username
 
     def get_completed_proposals(self):
-        return self.proposals.query.filter_by(state = STATES.COMPLETED).all()
+        return self.proposals.filter_by(state = STATES.COMPLETED).all()
 
     def get_ongoing_proposals(self):
-        return self.proposals.query.filter_by(state = STATES.ONGOING).all()
+        return self.proposals.filter_by(state = STATES.ONGOING).all()
 
     def get_pending_proposals(self):
-        return self.proposals.query.filter_by(state = STATES.PENDING).all()
+        return self.proposals.filter_by(state = STATES.PENDING).all()
 
     def get_ongoing_projects(self):
-        return self.projects.query.filter_by(state = STATES.ONGOING).all()
+        return self.projects.filter_by(state = STATES.ONGOING).all()
 
     def get_completed_projects(self):
-        return self.projects.query.filter_by(state = STATES.COMPLETED).all()
+        return self.projects.filter_by(state = STATES.COMPLETED).all()
 
     @classmethod
     def find(cls, id):
