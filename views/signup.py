@@ -6,9 +6,11 @@ from hackkings.constants import ROLES
 @app.route('/signup')
 @app.route('/signup/<role>')
 def signup(role=None):
-    if role == ROLES.DEVELOPER:
+    print 'signup'
+    role = role.lower().strip()
+    if role == 'developer':
         return render_template('signup.developer.html')
-    elif role == ROLES.PROPOSER:
+    elif role == 'proposer':
         return render_template('signup.proposer.html')
     else:
         return render_template('signup.html')
