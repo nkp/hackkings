@@ -12,14 +12,8 @@
         {{ render_input(settings_form.password, 'xlarge') }}
         {{ render_input(settings_form.avatar) }}
         {{ render_input(settings_form.bio) }}
-        {{ render_input(settings_form.code_academ_username) }}
+        {{ render_input(settings_form.code_academy_username) }}
         {{ render_input(settings_form.skills) }}
         {{ render_action(settings_form.submit) }}
     </fieldset>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            {# Pipe through safe so jinja doesn't HTML escape any quotes ("') #}
-            $('#skills').typeahead({ source: {{ skills|safe }} })
-        });
-    </script>
 </form>
