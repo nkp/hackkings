@@ -35,7 +35,7 @@ class Project(db.Model):
         return new_project
 
     def __repr__(self):
-        return '<Project %r>' % self.type
+        return '<Project %r>' % self.name
 
     def add_developer_by_id(self, id):
         dev = User.query.filter_by(id = id).first()
@@ -54,6 +54,12 @@ class Project(db.Model):
             if not self.developers.query.all():
                 self.state = STATES.PENDING
             db.session.commit()
+
+    def set_complete(self):
+        self.state = STATES.COMPLETED
+
+    def unset_complete(self):
+        self.state = STATES.ONGOING
 
     @classmethod
     def find(cls, id):
