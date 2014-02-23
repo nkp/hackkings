@@ -2,12 +2,16 @@
 {% block content %}
 
 <div class="content">
+  <div class="jumbotron">
+    <h1>Welcome to {{ SITENAME }}</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend tellus a tortor consequat, sit amet hendrerit massa hendrerit. Mauris nec lacus tortor. Praesent dictum erat at tortor varius gravida. Nulla ac orci eu risus pretium pulvinar. Nam vitae odio orci. Donec elit eros, hendrerit at diam id, eleifend placerat augue. Pellentesque sapien leo, imperdiet eget augue eu, adipiscing placerat urna. Maecenas diam ante, sodales non rhoncus eget, dictum sed libero.</p>
+  </div>
   <div class="row">
-    <div class="col-md-6 proposer-button">
-      <a href="signup/proposer">I've got an idea!</a>
+    <div class="col-md-6 text-center">
+      <a class="btn btn-primary btn-lg" href="signup/proposer">I've got an idea!</a>
     </div>
-    <div class="col-md-6 developer-button">
-      <a href="signup/developer">I'm a developer!</a>
+    <div class="col-md-6 text-center">
+      <a class="btn btn-info btn-lg" href="signup/developer">I'm a developer!</a>
     </div>
   </div>
 </div>

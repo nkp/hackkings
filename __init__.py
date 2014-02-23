@@ -1,7 +1,7 @@
-from flask import Flask, redirect
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, redirect, request
+from flask.ext.sqlalchemy import SQLAlchemy
 from hackkings.constants import SITENAME
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 
 import os
 import sys
@@ -35,6 +35,14 @@ def configure_jinja(app):
     @app.context_processor
     def inject_sitename():
         return dict(SITENAME=SITENAME)
+
+    @app.context_processor
+    def inject_path():
+        return dict(PATH=request.path)
+
+    @app.context_processor
+    def inject_authenticated():
+        return dict(AUTHENTICATED=current_user.is_authenticated())
 
 def hook_routes():
     from hackkings import views

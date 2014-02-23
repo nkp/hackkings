@@ -126,3 +126,9 @@ class User(db.Model, UserMixin):
 
     def is_developer(self):
         return self.role == ROLES.DEVELOPER
+
+    def set_bio(self, bio):
+        self.bio = bio;
+
+    def set_name(self, name):
+        self.name = name;
