@@ -14,3 +14,17 @@ form.logout input {
 form.logout input:hover {
 	color: #d9230f;
 }
+
+img.avatar{
+    height: 35px;
+    width: 35px;
+    float:left;
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-right: -3px;
+    border-radius: 25px;
+}
+
+form.logout{
+    float: right;
+}

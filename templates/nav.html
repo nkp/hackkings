@@ -26,7 +26,7 @@
               <a href="/profile">Profile</a>
             </li>
             <li>
-              {% if AUTHENTICATED %}<form class="logout" action="/logout" method="post"><input type="submit" value="Logout"></input></form>{% else %}<a href="/login">Login</a>{% endif %}
+              {% if AUTHENTICATED %}<img class="avatar" src="{{AVATAR}}" /><form class="logout" action="/logout" method="post"><input type="submit" value="Logout"></input></form>{% else %}<a href="/login">Login</a>{% endif %}
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
