@@ -7,7 +7,7 @@
         {% for m in messages %}
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{ m.sender.name or m.sender.username }}</h3> <small>{{ m.time | prettydate }}</small>
+            <h2 class="panel-title"><a href="/profile/{{ m.sender.id }}">{{ m.sender.name or m.sender.username }}</a></h2> <small>{{ m.time | prettydate }}</small>
           </div>
           <div class="panel-body">
             {{ m.message }}
