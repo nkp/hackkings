@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 from threading import Thread
 from werkzeug.security import safe_str_cmp
 from hackkings.utils import CodeAcademyQueue
+from datetime import datetime
 
 DAY_DELTA = timedelta(1)
 
@@ -49,7 +50,7 @@ class User(db.Model, UserMixin):
         self.email = email
         db.session.commit()
 
-    def set_role(self, rol):
+    def set_role(self, role):
         self.role = role
         db.session.commit()
 
@@ -57,9 +58,19 @@ class User(db.Model, UserMixin):
         self.code_academy_username = code_academy_username
         db.session.commit()
 
+    def set_code_academy_badges(self, html):
+        self._code_academy_badges = html
+        self.code_academy_fetch_time = datetime.utcnow()
+        db.session.commit()
+        
+
+
     def get_code_academy_badges(self):
+        print 'Getting code'
         if datetime.utcnow() > self.code_academy_fetch_time - DAY_DELTA:
+            print 'After the delta'
             CodeAcademyQueue.put(self)
+            self.code_academy_fetch_time = datetime.utcnow()
         return self._code_academy_badges
 
     @classmethod
