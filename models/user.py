@@ -71,15 +71,15 @@ class User(db.Model, UserMixin):
 
     @classmethod
     def find(cls, id):
-        return User.filter_by(id = id).first()
+        return User.query.filter_by(id = id).first()
 
     @classmethod
     def find_by_email(cls, email):
-        return User.filter_by(email = email).first()
+        return User.query.filter_by(email = email).first()
 
     @classmethod
     def find_by_username(cls, username):
-        return User.filter_by(usernae = username).first()
+        return User.query.filter_by(usernae = username).first()
 
     @classmethod
     def find_by_identifier(cls, identifier):
