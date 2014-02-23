@@ -1,34 +1,80 @@
 {% extends 'base.html' %}
  
-{% block content %}  
-  <div class="jumbotron">
-    <h1> {{project.name}} </h1>
-    <h3 class="">Difficulty</h3>
-      <div class="label label-info">
-        {{project.difficulty}} 
+{% block content %}
+    <div class="content col-md-8 col-md-offset-2">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3> {{project.name}} </h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h5>Skills Required</h5>
+                  {% if project.skills_needed != [] %}{% for skill in project.skills_needed %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}{% else %}<!-- No skills -->{% endif %}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Difficulty</h5>
+                  <span class="label label-info">
+                    {{project.difficulty}} 
+                  </span>
+                </div>
+                <div class="col-md-6">
+                  <h5>Length</h5>
+                  <span class="label label-info">
+                    {{project.time_estimate}} 
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <button class="btn btn-block btn-success" href="/project/{{ project.id }}/apply">Apply</button>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>People currently working on it</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                  {% if project.currently_working != [] %}<div>
+                    {% for developer in project.currently_working %}<span class="label label-danger">{{ developer.username }}</span> {% endfor %}
+                  </div>{% else %}<!-- No one is working on this project --><span class="">None</span>{% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3>About the Project</h3>
+            </div>
+            <div class="panel-body">
+              <p class="text-right">
+                Project proposed by <a href="/profile/{{ project.proposer.id }}">{{ project.proposer.username }}</a>
+              </p>
+              <p>
+                {{project.description}}
+              </p>
+            </div>
+
+            {% if project.attachments != [] %}<div class="panel-footer">
+              <div id="attachments">
+                <h4 class="">Useful links</h4>
+                {% for attachment in project.attachments %}<span class="">{{attachment.link}}</span> {% endfor %}
+              </div>
+            </div>{% else %}<!-- No attachments available for this projects -->{% endif %}
+          </div>         
+        </div>
       </div>
-
-    <div id="skills-needed">
-      <h3 class="">Skills needed</h3>
-      {% if project.skills_needed != [] %}<div id="skills"> 
-        {% for skill in project.skills_needed %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}
-      </div>{% else %}<!-- No skills -->{% endif %}
     </div>
 
-    <h3 class="">Description</h3>
-    <div class="">
-      {{project.description}}
-    </div>
 
-    {% if project.attachments != [] %}
-    <div id="attachments">
-      <h4 class="">Useful links</h4>
-      {% for attachment in project.attachments %}<span class="">{{attachment.link}}</span> {% endfor %}
-    </div>{% else %}<!-- No attachments available for this projects -->{% endif %}
-
-    <h4 class="">Developers currently working on this project</h4>
-    {% if project.currently_working != [] %}<div>
-      {% for developer in project.currently_working %}<span class="">{{ developer.username }}</span> {% endfor %}
-    </div>{% else %}<!-- No one is working on this project --><span class="">None</span>{% endif %}
-  </div>
 {% endblock %}

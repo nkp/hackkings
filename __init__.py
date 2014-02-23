@@ -3,6 +3,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from hackkings.constants import SITENAME
 from flask_login import LoginManager, current_user
 from hackkings import constants
+from hackkings.utils import pretty_date
 
 import os
 import sys
@@ -50,6 +51,10 @@ def configure_jinja(app):
     def paragraph(s):
         r = '</p><p>'.join(s.split('\n'))
         return '<p>' + r + '</p>'
+
+    @app.template_filter('prettydate')
+    def prettify(dt):
+        return pretty_date(dt, 'Just now')
 
     @app.context_processor
     def inject_authenticated():
