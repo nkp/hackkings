@@ -1,4 +1,4 @@
-from flask import render_template, current_app, redirect, abort
+from flask import render_template, current_app, redirect, abort, flash
 
 from hackkings import app
 from hackkings.constants import ROLES

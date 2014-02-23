@@ -36,3 +36,6 @@ nosetests.xml
 .pydevproject
 
 *.db
+
+#uploads contains avatar images
+static/uploads
