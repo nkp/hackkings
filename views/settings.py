@@ -18,6 +18,7 @@ def settings():
     print dir(settings_form.skills)
     print settings_form.skills.data
     settings_form.skills.choices = [(skill.id, skill.name) for skill in Skill.query.all()]
+    settings_form.skills.data = [skill.id for skill in user.skills]
 
     if settings_form.validate_on_submit():
         if settings_form.name.data:
@@ -28,7 +29,6 @@ def settings():
             current_user.set_bio(settings_form.bio.data)
         if settings_form.code_academy_username.data:
             current_user.set_code_academy_username(settings_form.code_academy_username.data)
-            current_user.get_code_academy_badges()
 
         existing_skill_ids = [skill.id for skill in user.skills]
         if settings_form.skills.data and settings_form.skills.data != existing_skill_ids:
@@ -49,7 +49,6 @@ def settings():
     settings_form.code_academy_username.data = user.code_academy_username
 
 
-    settings_form.skills.data = [skill.id for skill in user.skills]
 
     return render_template('settings.html', settings_form=settings_form, skills=Skill.query.all())
     
