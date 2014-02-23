@@ -44,3 +44,7 @@ a.nope, a.nope:hover {
     outline: 0;
     text-decoration: none;
 }
+
+#codecademy_badges{
+    padding: 5px;
+}
