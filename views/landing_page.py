@@ -7,26 +7,31 @@ from hackkings.constants import ROLES
 def landing_page(id=None):
     if id == None:
         abort(404)
+
     user = User.find(id)
+
     if user == None:
         abort(404)
 
     landing_page_data = {}
+
     if user.role == ROLES.DEVELOPER:
         landing_page_data = { 'avatar': user.avatar,
                               'username': user.username,
+                              'role' : user.role,
                               'ongoing_projects': user.get_ongoing_projects(),
                               'completed_projects': user.get_completed_projects(),
                               'suggested_projects': get_suggestions() }
     elif user.role == ROLES.PROPOSER:
         landing_page_data = { 'avatar': user.avatar,
                               'name': user.name, 
+                              'role' : user.role,
                               'ongoing_proposals': user.get_ongoing_proposals(),
                               'pending_proposals': user.get_pending_proposals(),
                               'completed_proposals': user.get_completed_proposals() }
-    else
+    else:
         abort(400)
-    
+     
     def get_suggestions():
         pending_projects = Project.get_all_pending_projects()
         skills = user.get_skills()
