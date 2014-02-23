@@ -22,7 +22,7 @@ map(Ilija.add_skill, skillObjects)
 # Create Projects
 names = ["Project", "Awesome Project", "Even Awesomer Project", "Super Awesome Project", "Super Duper Awesomer Project"]
 for name in names:
-    project = Project(name, sachin, "An awesome project description", "9000", "0")
+    project = Project(name, sachin, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eleifend tellus a tortor consequat, sit amet hendrerit massa hendrerit. Mauris nec lacus tortor. Praesent dictum erat at tortor varius gravida. Nulla ac orci eu risus pretium pulvinar. Nam vitae odio orci. Donec elit eros, hendrerit at diam id, eleifend placerat augue. Pellentesque sapien leo, imperdiet eget augue eu, adipiscing placerat urna. Maecenas diam ante, sodales non rhoncus eget, dictum sed libero.", "9000", "0")
     project.add_skill(skillObjects[1])
     if name == "Project":
     	project.add_developer(andrew)
