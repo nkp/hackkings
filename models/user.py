@@ -88,7 +88,6 @@ class User(db.Model, UserMixin):
         return self.proposals.filter_by(state = STATES.PENDING).all()
 
     def get_ongoing_projects(self):
-        print self.projects.filter_by(state = STATES.ONGOING).all()
         return self.projects.filter_by(state = STATES.ONGOING).all()
 
     def get_completed_projects(self):
