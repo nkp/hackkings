@@ -14,8 +14,8 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-left">
             {% if PATH == "/projects" %}<li class="active">{% else %}<li>{% endif %}
               <a href="/projects">Projects</a>
             </li>
@@ -25,8 +25,21 @@
             {% if PATH == "/profile" %}<li class="active">{% else %}<li>{% endif %}
               <a href="/profile">Profile</a>
             </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>{% if AUTHENTICATED %}
+              <img class="avatar" src="{{AVATAR}}" />
+            </li>
             <li>
-              {% if AUTHENTICATED %}<img class="avatar" src="{{AVATAR}}" /><form class="logout" action="/logout" method="post"><input type="submit" value="Logout"></input></form>{% else %}<a href="/login">Login</a>{% endif %}
+              <a href="/profile">Hi, {{ USERNAME }}</a>
+            </li>
+            <li>
+              <div>
+                <a class="cog" href="/settings"><span class="glyphicon glyphicon-cog"></span></a>
+              </div>
+            </li>
+            <li>
+              <form class="logout" action="/logout" method="post"><input type="submit" value="Logout"></input></form>{% else %}<a href="/login">Login</a>{% endif %}
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->

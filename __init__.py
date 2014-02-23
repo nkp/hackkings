@@ -51,6 +51,12 @@ def configure_jinja(app):
         return dict(AUTHENTICATED=current_user.is_authenticated())
 
     @app.context_processor
+    def inject_username():
+        if current_user.is_authenticated():
+            return dict(USERNAME=current_user.username)
+        return ""
+
+    @app.context_processor
     def inject_profile_pic():
         pic = ''
         if current_user.is_authenticated():
