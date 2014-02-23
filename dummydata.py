@@ -8,6 +8,7 @@ andrew = User.create("southrop", "southrop113@gmail.com", "hunter2", ROLES.DEVEL
 nic = User.create("nic", "nick@gmail.com", "password", ROLES.DEVELOPER)
 Ilija= User.create("Ilija", "Ilija@gmail.com", "letmein", ROLES.DEVELOPER)
 Microsoft=User.create("Microsoft", "windows@hotmail.com", "apple", ROLES.PROPOSER)
+Microsoft.set_bio("Whether you are creating new code, algorithms or data structures, you are the link between abstract concepts and the technology products used daily by your friends, family and millions of other people around the world. While working on our projects you will improve your technical skills and develop next-generation software!")
 
 # Create Skills
 someSkills = ["Java", "C++","JavaScript", "C", "Python", "Web Dev"]
