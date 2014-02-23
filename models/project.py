@@ -60,7 +60,7 @@ class Project(db.Model):
         return Project.query.filter_by(id = id).first()
 
     def get_skills(self):
-        return self.skills.query.all()
+        return self.skills.all()
 
     def get_current_developers(self):
         return self.developers.query.all()
@@ -87,7 +87,7 @@ class Project(db.Model):
             pass # Maybe it should return an error
 
     def remove_skill(self, skill_obj):
-        if self.skills.query.filter_by(id = skill_obj.id).first() != None:
+        if self.skills.filter_by(id = skill_obj.id).first() != None:
             self.skills.remove(skill_obj)
             db.session.commit()
         else:

@@ -5,7 +5,6 @@ class Message(db.Model):
     __tablename__ = "message"
     id = db.Column(db.Integer, primary_key=True)
     thread_id = db.Column(db.Integer, db.ForeignKey('message_thread.id'))
-
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     time = db.Column(db.DateTime)
     message = db.Column(db.Text)
