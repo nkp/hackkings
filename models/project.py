@@ -26,6 +26,12 @@ class Project(db.Model):
         self.time_estimate = time_estimate
         self.difficulty = difficulty
 
+    @classmethod
+    def create(cls, name, proposer, description, time_estimate, difficulty):
+        new_project = Project( name, proposer, description, time_estimate, difficulty)
+        db.session.add(new_project)
+        db.session.commit()
+
     def __repr__(self):
         return '<Project %r>' % self.type
 
