@@ -65,9 +65,7 @@ class Project(db.Model):
     def add_skill_id(self, skill_id):
         skill_obj = Skill.query.filter_by(id = skill_id).first()
         if skill_obj != None:
-            if self.skills.query.filter_by(id = skill_obj.id).first() == None:
-                self.skills.append(skill_obj)
-                db.session.commit()
+            self.add_skill(skill_obj)
         else:
             pass # Maybe it should return an error
 
@@ -81,9 +79,7 @@ class Project(db.Model):
     def remove_skill_id(self, skill_id):
         skill_obj = Skill.query.filter_by(id = skill_id).first()
         if skill_obj != None:
-            if self.skills.query.filter_by(id = skill_obj.id).first() != None:
-                self.skills.remove(skill_obj)
-                db.session.commit()
+            self.remove_skill(skill_obj)
         else:
             pass # Maybe it should return an error
 
