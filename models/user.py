@@ -128,7 +128,13 @@ class User(db.Model, UserMixin):
         return self.role == ROLES.DEVELOPER
 
     def set_bio(self, bio):
-        self.bio = bio;
+        self.bio = bio
+        db.session.commit()
 
     def set_name(self, name):
-        self.name = name;
+        self.name = name
+        db.session.commit()
+
+    def set_avatar(self, link):
+        self.avatar = link
+        db.session.commit()
