@@ -2,11 +2,15 @@ body {
     padding-top: 50px;
 }
 
-.proposer-button {
-    text-align: right;
+form.logout input {
+	background:none!important;
+    border:none;
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	color: #333333;
 }
 
-.developer-button {
-    text-align: left;
+form.logout input:hover {
+	color: #d9230f;
 }
-

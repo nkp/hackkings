@@ -25,6 +25,9 @@
             {% if PATH == "/profile" %}<li class="active">{% else %}<li>{% endif %}
               <a href="/profile">Profile</a>
             </li>
+            <li>
+              {% if AUTHENTICATED %}<form class="logout" action="/logout" method="post"><input type="submit" value="Logout"></input></form>{% else %}<a href="/login">Login</a>{% endif %}
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
