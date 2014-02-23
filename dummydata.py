@@ -7,11 +7,11 @@ andrew = User.create("southrop", "southrop113@gmail.com", "hunter2", ROLES.DEVEL
 nic = User.create("nic", "nick@gmail.com", "password", ROLES.DEVELOPER)
 Ilija= User.create("Ilija", "Ilija@gmail.com", "letmein", ROLES.DEVELOPER)
 Microsoft=User.create("Microsoft", "windows@hotmail.com", "apple", ROLES.PROPOSER)
-project = Project("Spreadsheet", "Microsoft", "Implement a spreadsheet for entering, modeling and viewing numerical data. Spreadsheet needs to have the ability to represent and evaluate symbolic expressions which are stored in, and can refer to other, cells. Cells are reffered to by a combination of their column and row names. Each cell can contain some text, reffered to as the cell's expression. A user can edit the expression in any cell, and when editing is finished, the expression is interpreted by the cell to produce the value which the cell displays. Feel free to design and structure your classes as you like, however, you may find an attached suggested design useful.", "two weeks", "intermediate")
-project.add_skill("java")
-db.session.commit()
 someSkills = ["java", "c++","js", "c", "python", "web dev"]
 skillObjects = map(Skill,someSkills);
+project = Project("Spreadsheet", Microsoft, "Implement a spreadsheet for entering, modeling and viewing numerical data. Spreadsheet needs to have the ability to represent and evaluate symbolic expressions which are stored in, and can refer to other, cells. Cells are reffered to by a combination of their column and row names. Each cell can contain some text, reffered to as the cell's expression. A user can edit the expression in any cell, and when editing is finished, the expression is interpreted by the cell to produce the value which the cell displays. Feel free to design and structure your classes as you like, however, you may find an attached suggested design useful.", "20", "7")
+project.add_skill(skillObjects[0])
+db.session.commit()
 map(db.session.add, skillObjects)
 db.session.commit()
 map(andrew.add_skill, skillObjects)
