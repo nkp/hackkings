@@ -4,6 +4,7 @@ from hackkings.linkingtables import developer_project_link, skill_users_link
 from hackkings.constants import STATES, ROLES, BCRYPT_HASH_LENGTH 
 from hackkings.utils import hash_password, check_password
 from flask_login import UserMixin
+from sqlalchemy import or_
 
 from werkzeug.security import safe_str_cmp
 class User(db.Model, UserMixin):
@@ -67,9 +68,23 @@ class User(db.Model, UserMixin):
 
     def get_completed_projects(self):
         return self.projects.query.filter_by(state = STATES.COMPLETED).all()
- 
-    def find(self, id):
+
+    @classmethod
+    def find(cls, id):
         return User.filter_by(id = id).first()
+
+    @classmethod
+    def find_by_email(cls, email):
+        return User.filter_by(email = email).first()
+
+    @classmethod
+    def find_by_username(cls, username):
+        return User.filter_by(usernae = username).first()
+
+    @classmethod
+    def find_by_identifier(cls, identifier):
+        return User.query.filter(or_(cls.email == identifer, 
+                                     cls.username == identifier)).first()
 
     def add_skill_id(self, skill_id):
         skill_obj = Skill.query.filter_by(id = skill_id).first()
