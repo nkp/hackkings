@@ -20,6 +20,7 @@ class Message(db.Model):
     def create(cls, thread, sender, message):
         new_message = Message(thread, sender, message)
         db.session.add(new_message)
+        thread.messages.append(new_message)
         db.session.commit()
 
     def __repr__(self):

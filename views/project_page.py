@@ -23,6 +23,22 @@ def project_apply(id=None):
 
     return redirect('/project/%d' % id) 
 
+@app.route('/project/<int:id>/unapply')
+def project_unapply(id=None):
+    if id == None:
+        abort(404)         
+
+    project = Project.find(id)
+    if project == None:
+        abort(404)
+
+    if current_user not in project.developers.all():
+        abort(400)
+
+    project.remove_developer(current_user)
+
+    return redirect('/project/%d' % id) 
+
 
 @app.route('/project/<int:id>')
 def project_page(id=None):

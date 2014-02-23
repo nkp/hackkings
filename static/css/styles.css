@@ -70,3 +70,7 @@ div.achievement{
     height: 80px;
     border-radius: 10px;
 }
+
+ul.radio#role {
+    list-style-type: none
+}

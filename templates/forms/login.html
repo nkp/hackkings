@@ -4,10 +4,10 @@
     {{ login_form.hidden_tag() }}
     {{ login_form.next }}
     <fieldset>
-        <legend>Don't have an account? <a href="/signup">Sign up</a>!</legend>
-        {{ render_input(login_form.identifier, 'xlarge') }}
-        {{ render_input(login_form.password, 'xlarge') }}
-        {{ render_input(login_form.remember_me, 'xlarge') }}
+        <p class="help-block text-right">Don't have an account? Sign up <a href="/signup">here</a></p>
+        {{ render_input(login_form.identifier, 'form-control') }}
+        {{ render_input(login_form.password, 'form-control') }}
+        {{ render_input(login_form.remember_me, 'checkbox') }}
         {{ render_action(login_form.submit) }}
     </fieldset>
 </form>
