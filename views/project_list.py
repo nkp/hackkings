@@ -4,6 +4,6 @@ from hackkings.models import Project
 
 @app.route('/projects')
 def project_list():
-    projects_list = get_all_current_projects()
-
-    return render_template('projects.html', project_list)
+    project_list = Project.get_all_current_projects()
+    
+    return render_template('projects.html', project_list = project_list)

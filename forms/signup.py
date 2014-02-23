@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, RadioField
 from wtforms.validators import DataRequired
 
 class SignupForm(Form):
@@ -7,3 +7,4 @@ class SignupForm(Form):
     password = PasswordField('password', validators=[DataRequired()])
     email = TextField('email', validators=[DataRequired()])
     name = TextField('name', validators=[DataRequired()])
+    role = RadioField('role')
