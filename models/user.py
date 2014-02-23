@@ -10,8 +10,8 @@ from werkzeug.security import safe_str_cmp
 class User(db.Model, UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
+    username = db.Column(db.String(80), unique=True, index=True)
+    email = db.Column(db.String(120), unique=True, index=True)
     _password = db.Column(db.String(BCRYPT_HASH_LENGTH))
     name = db.Column(db.String(80), unique=False)
     avatar = db.Column(db.Text, unique=False)
@@ -79,7 +79,7 @@ class User(db.Model, UserMixin):
 
     @classmethod
     def find_by_username(cls, username):
-        return User.query.filter_by(usernae = username).first()
+        return User.query.filter_by(username = username).first()
 
     @classmethod
     def find_by_identifier(cls, identifier):
