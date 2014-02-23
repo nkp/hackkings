@@ -57,20 +57,21 @@ class User(db.Model, UserMixin):
     def set_code_academy_username(self, code_academy_username):
         self.code_academy_username = code_academy_username
         db.session.commit()
+        self.get_code_academy_badges()
 
     def set_code_academy_badges(self, html):
         self._code_academy_badges = html
         self.code_academy_fetch_time = datetime.utcnow()
         db.session.commit()
+        print self._code_academy_badges
         
-
-
     def get_code_academy_badges(self):
-        print 'Getting code'
-        if datetime.utcnow() > self.code_academy_fetch_time - DAY_DELTA:
-            print 'After the delta'
-            CodeAcademyQueue.put(self)
-            self.code_academy_fetch_time = datetime.utcnow()
+        print 'Getting code' # Was used, now does nothing
+        #if datetime.utcnow() > self.code_academy_fetch_time - DAY_DELTA:
+            #print 'After the delta'
+            #CodeAcademyQueue.put(self)
+            #self.code_academy_fetch_time = datetime.utcnow()
+            #db.session.commit()
         return self._code_academy_badges
 
     @classmethod
@@ -85,6 +86,7 @@ class User(db.Model, UserMixin):
 
     def set_password(self, plain_password):
         self._password = hash_password(plain_password)
+        db.session.commit()
 
     password = property(fget=get_password, fset=set_password)
 

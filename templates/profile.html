@@ -30,7 +30,8 @@
             <div class="panel-heading">
               <h2>Code Academy Badges</h2>
             </div>
-            {{ user.get_code_academy_badges() }}
+            <div id="code_academy_badges">
+            </div>
           </div>
         {% endif %}
       {% endif %}
@@ -51,4 +52,15 @@
   </div>
 </div>
 
+        {% if user.code_academy_username %}
+<script type="text/javascript">
+  $.ajax('http://www.codecademy.com/users/{{user.code_academy_username}}/achievements',
+    {success : function(data, textStatus, jqXHR){
+        var badges = $(data).find('#userAchievements');
+        console.log(badges);
+        $('#code_academy_badges').append(badges);
+  }});
+
+</script>
+{% endif %}
 {% endblock %}

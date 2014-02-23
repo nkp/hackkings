@@ -24,7 +24,7 @@ def profile_page(id=None):
                          'description': user.bio,
                          'skills': user.get_skills(),
                          'role' : user.role,
-                         'codeacademy_badges': [] } 
+                         'codeacademy_badges': user.get_code_academy_badges() } 
     elif user.role == ROLES.PROPOSER:
         profile_data = { 'ongoing_proposals': user.get_ongoing_proposals(),
                          'pending_proposals': user.get_pending_proposals(),

@@ -15,6 +15,7 @@ thread_lock = Lock()
 def code_academy_worker(q, lock):
     while 1:
         user = q.get()
+        print 'User got! ' + str(user)
         try:
             name = user.code_academy_username
             url = 'http://codeacademy.com/users/%s/achievements' % name
@@ -25,9 +26,10 @@ def code_academy_worker(q, lock):
             soup = BeautifulSoup(content)
             achievements = soup.find(id='userAchievements')
             with lock:
-                user._code_academy_badges = str(achievements)
-                user.code_academy_fetch_time = datetime.utcnow()
-        except Exception:
+                #print achievements
+                user.set_code_academy_badges(str(achievements))
+        except Exception as e:
+            print e
             q.put(user)
         finally:
             q.task_done()
