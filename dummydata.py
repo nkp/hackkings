@@ -22,6 +22,5 @@ names = ["project", "awesome project", "even awesomer project", "super awesome p
 for name in names:
     project = Project(name, sachin, "some awesome project description", "9000", "0")
     project.add_skill(skillObjects[1])
-    print skillObjects[1]
     db.session.add(project)
 db.session.commit()
