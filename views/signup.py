@@ -6,7 +6,7 @@ from hackkings.forms import SignupForm
 
 @app.route('/signup')
 @app.route('/signup/<role>')
-def signup(role=None):
+def signup(role=None, methods=('GET', 'POST')):
     print 'signup'
     signup_form = SignupForm()
     signup_form.role.choices = [(ROLES.DEVELOPER, 'Developer'), (ROLES.PROPOSER, 'Proposer')]
