@@ -63,7 +63,7 @@ class Project(db.Model):
         return self.skills.all()
 
     def get_current_developers(self):
-        return self.developers.query.all()
+        return self.developers.all()
    
     def add_skill_id(self, skill_id):
         skill_obj = Skill.query.filter_by(id = skill_id).first()
