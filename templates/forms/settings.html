@@ -6,7 +6,6 @@
     {{ settings_form.hidden_tag() }}
     {{ settings_form.next }}
     <fieldset>
-        <legend>Already have account? <a href="/login">Login</a> please.</legend>
         {{ render_input(settings_form.name, 'xlarge') }}
         {{ render_input(settings_form.email, 'xlarge') }}
         {{ render_input(settings_form.password, 'xlarge') }}

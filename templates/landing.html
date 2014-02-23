@@ -10,14 +10,14 @@
       <div class="panel panel-info">
         <div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Current Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Ongoing Proposals{% endif %}</div>
         <table class="table">
-          {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in ongoing_projects %}<tr><td>{{ project.name }}</td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in ongoing_proposals %}<tr><td>{{ proposal.name }}</td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
+          {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in ongoing_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in ongoing_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
         </table>
       </div>
 
       <div class="panel panel-danger">
         <div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Past Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Completed Proposals{% endif %}</div>
         <table class="table">
-        {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in completed_projects %}<tr><td>{{ project.name }}</td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in completed_proposals %}<tr><td>{{ proposal.name }}</td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
+        {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in completed_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in completed_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
         </table>
       </div>
     </div>
@@ -25,7 +25,7 @@
       <div class="panel panel-primary">
         <div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Suggested Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Pending Proposals{% endif %}</div>
         <table class="table">
-          {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in suggested_projects %}<tr><td>{{ project.name }}</td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in pending_proposals %}<tr><td>{{ proposal.name }}</td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
+          {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in suggested_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in pending_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
         </table>
       </div>
     </div>
