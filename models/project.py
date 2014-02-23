@@ -53,6 +53,38 @@ class Project(db.Model):
     def get_current_developers(self):
         return self.developers.query.all()
    
+    def add_skill_id(self, skill_id):
+        skill_obj = Skill.query.filter_by(id = skill_id).first()
+        if skill_obj != None:
+            if self.skills.query.filter_by(id = skill_obj.id).first() == None:
+                self.skills.append(skill_obj)
+                db.session.commit()
+        else:
+            pass # Maybe it should return an error
+
+    def add_skill(self, skill_obj):
+        if self.skills.filter_by(id = skill_obj.id).first() == None:
+            self.skills.append(skill_obj)
+            db.session.commit()
+        else:
+            pass # Maybe it should return an error
+
+    def remove_skill_id(self, skill_id):
+        skill_obj = Skill.query.filter_by(id = skill_id).first()
+        if skill_obj != None:
+            if self.skills.query.filter_by(id = skill_obj.id).first() != None:
+                self.skills.remove(skill_obj)
+                db.session.commit()
+        else:
+            pass # Maybe it should return an error
+
+    def remove_skill(self, skill_obj):
+        if self.skills.query.filter_by(id = skill_obj.id).first() != None:
+            self.skills.remove(skill_obj)
+            db.session.commit()
+        else:
+            pass # Maybe it should return an error
+
     @classmethod
     def get_all_pending_projects(cls):
         return Project.query.filter(cls.state == STATES.PENDING).all()
