@@ -18,5 +18,8 @@ def login():
             abort(404) # User not found
         if user.check_password(login_form.password.data):
             login_user(user)
-        return redirect('/')
+            return redirect('/')
+        else:
+            flash('Wrong password')
+            return redirect('/login')
     return render_template('login.html', login_form=login_form)
