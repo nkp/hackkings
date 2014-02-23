@@ -2,17 +2,17 @@
 {% from "macros.html" import render_input, render_action %}
 
 
-<form class='form-stacked' method="POST" action="/profile/settings">
+<form class="form-stacked form-group" role="form" method="POST" action="/profile/settings">
     {{ settings_form.hidden_tag() }}
     {{ settings_form.next }}
     <fieldset>
-        {{ render_input(settings_form.name, 'xlarge') }}
-        {{ render_input(settings_form.email, 'xlarge') }}
-        {{ render_input(settings_form.password, 'xlarge') }}
-        {{ render_input(settings_form.avatar) }}
-        {{ render_input(settings_form.bio) }}
-        {{ render_input(settings_form.code_academy_username) }}
-        {{ render_input(settings_form.skills) }}
+        {{ render_input(settings_form.name, 'form-control') }}
+        {{ render_input(settings_form.email, 'form-control') }}
+        {{ render_input(settings_form.password, 'form-control') }}
+        {{ render_input(settings_form.avatar, 'form-control') }}
+        {{ render_input(settings_form.bio, 'form-control') }}
+        {{ render_input(settings_form.code_academy_username, 'form-control') }}
+        {{ render_input(settings_form.skills, 'form-control') }}
         {{ render_action(settings_form.submit) }}
     </fieldset>
 </form>
