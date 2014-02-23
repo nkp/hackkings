@@ -18,7 +18,11 @@
             </ul>
           </div>
           <div class="bio">
-            {{user.bio | paragraph | safe}}
+            {% if user.bio %}
+              {{user.bio | paragraph | safe}}
+            {% else %}
+              This user hasn't set a biography yet...
+            {% endif %}
           </div>
         </div>
         {% if user.code_academy_username %}
