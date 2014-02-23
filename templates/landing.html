@@ -2,34 +2,37 @@
 {% block content %}
 
 <div class="content">
-  <div class="row">
-    <div class="col-md-2 text-center">
-      {% if role == CONSTANTS.ROLES.DEVELOPER %}<button class="btn btn-success btn-lg">Generate CV</button>{% elif role == CONSTANTS.ROLES.PROPOSER %}<a href="/"><button class="btn btn-success btn-lg">New Proposal</button></a>{% endif %}
-    </div>
-    <div class="col-md-7">
-      <div class="panel panel-info">
-        <div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Current Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Ongoing Proposals{% endif %}</div>
-        <table class="table">
-          {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in ongoing_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in ongoing_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
-        </table>
-      </div>
+	<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-7">
+			<div class="panel panel-default">
+				<div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Current Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Ongoing Proposals{% endif %}</div>
+				<table class="table">
+					{% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in ongoing_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in ongoing_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
+				</table>
+			</div>
 
-      <div class="panel panel-danger">
-        <div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Past Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Completed Proposals{% endif %}</div>
-        <table class="table">
-        {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in completed_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in completed_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
-        </table>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="panel panel-primary">
-        <div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Suggested Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Pending Proposals{% endif %}</div>
-        <table class="table">
-          {% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in suggested_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in pending_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
-        </table>
-      </div>
-    </div>
-  </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Past Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Completed Proposals{% endif %}</div>
+				<table class="table">
+				{% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in completed_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in completed_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
+				</table>
+			</div>
+		</div>
+		
+		<div class="col-md-5">
+			<div class="panel-default">
+				<div class="panel-body">
+					{% if role == CONSTANTS.ROLES.DEVELOPER %}<a href="#" class="btn btn-success btn-block" role="button">Generate CV</a>{% elif role == CONSTANTS.ROLES.PROPOSER %}<a href="/project/new" class="btn btn-success btn-block" role="button">New Proposal</a>{% endif %}
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">{% if role == CONSTANTS.ROLES.DEVELOPER %}Suggested Projects{% elif role == CONSTANTS.ROLES.PROPOSER %}Pending Proposals{% endif %}</div>
+				<table class="table">
+					{% if role == CONSTANTS.ROLES.DEVELOPER %}{% for project in suggested_projects %}<tr><td><a href="/project/{{ project.id }}">{{ project.name }}</a></td><td>{% for skill in project.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% elif role == CONSTANTS.ROLES.PROPOSER %}{% for proposal in pending_proposals %}<tr><td><a href="/project/{{ proposal.id }}">{{ proposal.name }}</a></td><td>{% for skill in proposal.skills %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}</td></tr>{% endfor %}{% endif %}
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}
