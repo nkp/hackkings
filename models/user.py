@@ -83,7 +83,7 @@ class User(db.Model, UserMixin):
 
     @classmethod
     def find_by_identifier(cls, identifier):
-        return User.query.filter(or_(cls.email == identifer, 
+        return User.query.filter(or_(cls.email == identifier, 
                                      cls.username == identifier)).first()
 
     def add_skill_id(self, skill_id):
