@@ -7,13 +7,14 @@ class Message(db.Model):
     thread_id = db.Column(db.Integer, db.ForeignKey('message_thread.id'))
 
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    
+    time = db.Column(db.DateTime)
     message = db.Column(db.Text)
 
-    def __init__(self, thread, sender, message):
+    def __init__(self, thread, sender, message, time):
         self.thread = thread
         self.sender = sender
         self.message = message
+        self.time = time
 
     def __repr__(self):
         return '<Message %r>' % self.message
