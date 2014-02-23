@@ -10,9 +10,9 @@
         <tr>
           <td>
             <a href="/message_thread/{{ thread.id }}">
-            {% for member in thread %}
+            {% for member in thread.members %}
               {% if loop.index <= 3 %} 
-                {{ member }}
+                {{ member.name or member.username }}
                 {% if loop.index == 3 %}
                 ...
                 {% else %}
@@ -24,7 +24,7 @@
           </td>
           <td>
             <a href="/message_thread/{{ thread.id }}">
-            {{ thread.messages[-1] | truncate(20) }}
+            {{ thread.messages[-1].message | truncate(20) }}
           </a>
           </td>
           <td>

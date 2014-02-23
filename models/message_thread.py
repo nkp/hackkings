@@ -31,4 +31,10 @@ class MessageThread(db.Model):
 
     @classmethod
     def find_with_user(cls, user): 
+        threads = []
+        for thread in MessageThread.query.all():
+            print thread.members
+            if user in thread.members:
+                threads.append(thread)
+        return threads
         return MessageThread.query.filter(MessageThread.members.any(User.id == user.id))

@@ -47,13 +47,16 @@ class Project(db.Model):
         self.state = STATES.ONGOING
         db.session.commit()
 
-    def remove_developer(self, id):
-        dev = self.developers.query.filter_by(id = id).first()
+    def remove_developer_by_id(self, id):
+        dev = self.developers.filter_by(id = id).first()
         if dev != None:
-            self.developers.remove(dev)
-            if not self.developers.all():
-                self.state = STATES.PENDING
-            db.session.commit()
+            self.remove_developer(self, dev)
+
+    def remove_developer(self, dev):
+        self.developers.remove(dev)
+        if not self.developers.all():
+            self.state = STATES.PENDING
+        db.session.commit()
 
     def set_complete(self):
         self.state = STATES.COMPLETED
