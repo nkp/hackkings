@@ -1,6 +1,7 @@
 from hackkings.models import User
 from hackkings import db
 from hackkings.linkingtables import thread_link
+from datetime import datetime
 
 
 class MessageThread(db.Model):
@@ -36,5 +37,7 @@ class MessageThread(db.Model):
             print thread.members
             if user in thread.members:
                 threads.append(thread)
+        threads.sort(key=lambda x: (x.messages[-1].time - datetime(2014,1,1)).total_seconds())
+        threads.reverse()
         return threads
         return MessageThread.query.filter(MessageThread.members.any(User.id == user.id))

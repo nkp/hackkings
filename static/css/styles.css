@@ -60,6 +60,11 @@ a.nope, a.nope:hover {
 #codecademy_badges{
     padding: 5px;
 }
+
+#codecademy_badges > #userAchievements > h2{
+    font-size: 20px!important;
+}
+
 div.achievement{
     display: inline-block;
     width: 100%;
