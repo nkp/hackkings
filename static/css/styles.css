@@ -4,6 +4,9 @@ html {
 
 body {
     padding-top: 50px;
+}
+
+body.home{
     background: url('/static/images/bg.jpg') fixed ;
     background-size: cover;
 }
