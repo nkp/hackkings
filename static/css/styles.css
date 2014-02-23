@@ -32,6 +32,14 @@ img.avatar {
     margin-right: -5px;
 }
 
+img.big {
+    height: 75px;
+    width: 75px;
+    float:left;
+    margin: 0 10px;
+}
+
+
 a.nope, a.nope:hover {
     color: #333333;
 }
