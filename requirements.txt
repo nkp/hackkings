@@ -1,8 +1,11 @@
 Flask==0.10.1
+Flask-Login==0.2.9
 Flask-SQLAlchemy==1.0
+Flask-WTF==0.9.4
 Jinja2==2.7.2
 MarkupSafe==0.18
 SQLAlchemy==0.9.3
+WTForms==1.0.5
 Werkzeug==0.9.4
 itsdangerous==0.23
 stevedore==0.11
