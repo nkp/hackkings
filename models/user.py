@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     # skills are backrefed
     bio = db.Column(db.Text, unique=False)
 
-    projects = db.relationship('Project', secondary=developer_project_link, backref=db.backref('developers', lazy='dynamic'))
+    projects = db.relationship('Project', secondary=developer_project_link, lazy='dynamic', backref=db.backref('developers', lazy='dynamic'))
     proposals = db.relationship('Project', backref='proposer', lazy='dynamic')
     messages_sent = db.relationship('Message', backref='sender', lazy='dynamic')
 
@@ -55,19 +55,20 @@ class User(db.Model, UserMixin):
         return '<User %r>' % self.username
 
     def get_completed_proposals(self):
-        return self.proposals.query.filter_by(state = STATES.COMPLETED).all()
+        return self.proposals.filter_by(state = STATES.COMPLETED).all()
 
     def get_ongoing_proposals(self):
-        return self.proposals.query.filter_by(state = STATES.ONGOING).all()
+        return self.proposals.filter_by(state = STATES.ONGOING).all()
 
     def get_pending_proposals(self):
-        return self.proposals.query.filter_by(state = STATES.PENDING).all()
+        return self.proposals.filter_by(state = STATES.PENDING).all()
 
     def get_ongoing_projects(self):
-        return self.projects.query.filter_by(state = STATES.ONGOING).all()
+        print self.projects.filter_by(state = STATES.ONGOING).all()
+        return self.projects.filter_by(state = STATES.ONGOING).all()
 
     def get_completed_projects(self):
-        return self.projects.query.filter_by(state = STATES.COMPLETED).all()
+        return self.projects.filter_by(state = STATES.COMPLETED).all()
 
     @classmethod
     def find(cls, id):
