@@ -5,13 +5,12 @@ from hackkings.constants import SITENAME
 import os
 import sys
 
-def configure(app):
+def configure_app(app):
     app.debug = True
     app.config['SECRET_KEY'] = 'hello'
     hook_routes()
-    configuredb(app)
 
-def configuredb(app):
+def configure_db(app):
     path = ''
     if os.name == 'nt':
         path = 'sqlite:///C:\\database.db'
@@ -32,9 +31,10 @@ app = Flask(__name__)
 
 db = SQLAlchemy(app)
 import hackkings.models
+configure_db(app)
 
 db.drop_all()
 db.create_all()
 import dummydata
 
-configure(app)
+configure_app(app)
