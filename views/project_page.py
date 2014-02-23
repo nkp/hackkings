@@ -10,11 +10,12 @@ def project_page(id=None):
     if project == None:
         abort(404)
     
-    project_data = { 'proposer': project.proposer,
+    project_data = { 'name': project.name,
+                     'proposer': project.proposer,
                      'difficulty': project.difficulty,
                      'time_estimate': project.time_estimate,
                      'description': project.description,
-                     'attachments': project.attachments,
+                     'attachments': project.get_attachments(),
                      'skills_needed': project.get_skills(),
                      'currently_working': project.get_current_developers() }
 

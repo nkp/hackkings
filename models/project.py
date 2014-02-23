@@ -68,6 +68,9 @@ class Project(db.Model):
     def get_skills(self):
         return self.skills.all()
 
+    def get_attachments(self):
+        return self.attachments.all()
+
     def get_current_developers(self):
         return self.developers.all()
    

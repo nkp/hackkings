@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+ 
+{% block content %}  
+  <div class="jumbotron">
+    <div class="">
+      <h1> {{project.name}} </h1>
+    </div>
+      <h3 class="">Difficulty</h3>
+        <div class="label label-info">
+          {{project.difficulty}} 
+        </div>
+
+    <div id="skills-needed">
+      <h3 class="">Skills needed</h3>
+      {% if project.skills_needed != [] %}<div id="skills"> 
+        {% for skill in project.skills_needed %}<span class="label label-info">{{ skill.name }}</span> {% endfor %}
+      </div>{% else %}<!-- No skills -->{% endif %}
+    </div>
+
+    <h3 class="">Description</h3>
+    <div class="">
+      {{project.description}}
+    </div>
+
+    {% if project.attachments != [] %}
+    <div id="attachments">
+      <h4 class="">Useful links</h4>
+      {% for attachment in project.attachments %}<span class="">{{attachment.link}}</span> {% endfor %}
+    </div>{% else %}<!-- No attachments available for this projects -->{% endif %}
+
+    <h4 class="">Developers currently working on this project</h4>
+    {% if project.currently_working != [] %}<div>
+      {% for developer in project.currently_working %}<span class="">{{ developer.username }}</span> {% endfor %}
+    </div>{% else %}<!-- No one is working on this project --><span class="">None</span>{% endif %}
+  </div>
+{% endblock %}

@@ -8,6 +8,6 @@ class STATES:
     COMPLETED = 2
 
 class ROLES:
-    DEVELOPER = 0
-    PROPOSER  = 1
-    BOTH      = 2
+    DEVELOPER = 1
+    PROPOSER  = 2
+    BOTH      = 3
