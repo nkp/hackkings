@@ -15,9 +15,10 @@ class MessageThread(db.Model):
 
     def __repr__(self):
         return '<Thread %r>' % self.id 
-
-    def find(self, id):
-        return MessageThread.filter_by(id = id).first()
+    
+    @classmethod
+    def find(cls, id):
+        return MessageThread.query.filter_by(id = id).first()
 
     @classmethod
     def find_with_user(cls, user): 

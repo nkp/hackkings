@@ -6,7 +6,7 @@
     <div class="col-md-offset-2 col-md-8">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h1>{{user.name}}</h1>
+          <h1>{% if user.name %}{{user.name}}{% else %}{{user.username}}{% endif %}</h1>
         </div>
         {% if user.role == CONSTANTS.ROLES.DEVELOPER %}
           <div class="skills">
@@ -30,7 +30,8 @@
             <div class="panel-heading">
               <h2>Code Academy Badges</h2>
             </div>
-            {{ user.get_code_academy_badges() }}
+            <div id="codecademy_badges">
+            </div>
           </div>
         {% endif %}
       {% endif %}
@@ -51,4 +52,18 @@
   </div>
 </div>
 
+        {% if user.code_academy_username %}
+<script type="text/javascript">
+  $.ajax('http://www.codecademy.com/users/{{user.code_academy_username}}/achievements',
+    {success : function(data, textStatus, jqXHR){
+        var badges = $(data).find('#userAchievements');
+        badges.find('a').each(function(){
+          this.href = 'http://www.codecademy.com'+this.pathname;
+        });
+        console.log(badges);
+        $('#codecademy_badges').append(badges);
+  }});
+
+</script>
+{% endif %}
 {% endblock %}
