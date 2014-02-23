@@ -46,6 +46,11 @@ def configure_jinja(app):
     def inject_constants():
         return dict(CONSTANTS=constants)
 
+    @app.template_filter('paragraph')
+    def paragraph(s):
+        r = '</p><p>'.join(s.split('\n'))
+        return '<p>' + r + '</p>'
+
     @app.context_processor
     def inject_authenticated():
         return dict(AUTHENTICATED=current_user.is_authenticated())

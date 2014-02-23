@@ -1,6 +1,5 @@
 
 {% from "macros.html" import render_input, render_action %}    
-<h2 style="margin-bottom:10px;">Log In!</h2>
 <form class='form-stacked' method="POST" action="/login">
     {{ login_form.hidden_tag() }}
     {{ login_form.next }}

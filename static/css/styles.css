@@ -14,3 +14,12 @@ form.logout input {
 form.logout input:hover {
 	color: #d9230f;
 }
+
+.skills {
+    padding: 10px;
+    text-align: center;
+}
+
+.bio {
+    padding: 10px;
+}

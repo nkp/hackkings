@@ -11,5 +11,9 @@ class Skill(db.Model):
     def __init__(self, name):
         self.name = name
 
+    @classmethod
+    def find(cls, id):
+        return Skill.query.filter_by(id=id).first()
+
     def __repr__(self):
         return '<Skill %r>' % self.name
