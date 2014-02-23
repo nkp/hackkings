@@ -61,6 +61,7 @@ class User(db.Model, UserMixin):
         new_user = User(username, email, password, role, None, "/static/uploads/default.png", None)
         db.session.add(new_user)
         db.session.commit()
+        return new_user
     
     def get_password(self):
         return self._password
