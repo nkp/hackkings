@@ -24,7 +24,7 @@ def project_apply(id=None):
     return redirect('/project/%d' % id) 
 
 @app.route('/project/<int:id>/unapply')
-def project_apply(id=None):
+def project_unapply(id=None):
     if id == None:
         abort(404)         
 
