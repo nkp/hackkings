@@ -64,9 +64,10 @@ class User(db.Model, UserMixin):
 
     @classmethod
     def create(cls, username, email, password, role):
-        new_user = User(username, email, password, role, None, None, None)
+        new_user = User(username, email, password, role, None, "/static/uploads/default.png", None)
         db.session.add(new_user)
         db.session.commit()
+        return new_user
     
     def get_password(self):
         return self._password

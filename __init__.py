@@ -55,6 +55,19 @@ def configure_jinja(app):
     def inject_authenticated():
         return dict(AUTHENTICATED=current_user.is_authenticated())
 
+    @app.context_processor
+    def inject_username():
+        if current_user.is_authenticated():
+            return dict(USERNAME=current_user.username)
+        return ""
+
+    @app.context_processor
+    def inject_profile_pic():
+        pic = ''
+        if current_user.is_authenticated():
+            pic = current_user.avatar
+        return dict(AVATAR=pic)
+
 def hook_routes():
     from hackkings import views
 

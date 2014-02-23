@@ -2,15 +2,10 @@ from hackkings import db
 from hackkings.constants import ROLES, STATES
 from hackkings.models import User,Skill,Project
 
-sachin = User("sazap10", "sazap10@gmail.com", "password", ROLES.PROPOSER, "Sachin Pande", "link", "some bio yo")
-db.session.add(sachin)
-andrew = User("southrop", "southrop113@gmail.com", "hunter2", ROLES.DEVELOPER, "Andrew Li", "link",  "some bio yo")
-db.session.add(andrew)
-nic = User("nic", "nick@gmail.com", "password", ROLES.DEVELOPER, "Nic", "link", "some bio yo")
-db.session.add(nic)
-Ilija= User("Ilija", "Ilija@gmail.com", "letmein", ROLES.DEVELOPER, "Ilija Radosavovic", "link", "some bio yo")
-db.session.add(Ilija)
-db.session.commit()
+sachin = User.create("sazap10", "sazap10@gmail.com", "password", ROLES.PROPOSER)
+andrew = User.create("southrop", "southrop113@gmail.com", "hunter2", ROLES.DEVELOPER)
+nic = User.create("nic", "nick@gmail.com", "password", ROLES.DEVELOPER)
+Ilija= User.create("Ilija", "Ilija@gmail.com", "letmein", ROLES.DEVELOPER)
 someSkills = ["java", "c++","js", "c", "python", "web dev"]
 skillObjects = map(Skill,someSkills);
 map(db.session.add, skillObjects)

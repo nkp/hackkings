@@ -9,6 +9,7 @@ form.logout input {
 	display: block;
 	padding: 10px 15px;
 	color: #333333;
+    outline: 0;
 }
 
 form.logout input:hover {
@@ -22,4 +23,24 @@ form.logout input:hover {
 
 .bio {
     padding: 10px;
+}
+img.avatar {
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+    margin-top: 7.5px;
+    margin-right: -5px;
+}
+
+a.nope, a.nope:hover {
+    color: #333333;
+}
+
+.cog {
+    color: #333333;
+    position: relative;
+    display: block;
+    padding: 11px 10px 9px;
+    outline: 0;
+    text-decoration: none;
 }

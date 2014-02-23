@@ -12,7 +12,7 @@ def upload():
     if request.method == 'POST' and 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         print filename
-        current_user.set_avatar('static/uploads/'+filename)
+        current_user.set_avatar('/static/uploads/'+filename)
         flash("Photo saved.")
         #return redirect("/user/settings")
     return render_template('upload.html')
