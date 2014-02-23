@@ -37,7 +37,7 @@ def settings():
                 if skill_id not in existing_skill_ids:
                     user.add_skill_id(skill_id)
             for skill_id in existing_skill_ids:
-                if skill_id not in settings.form.skills.data:
+                if skill_id not in settings_form.skills.data:
                     user.remove_skill_id(skill_id)
             
         flash('Settings changed')
@@ -47,7 +47,6 @@ def settings():
     settings_form.avatar.data = user.avatar
     settings_form.bio.data = user.bio
     settings_form.code_academy_username.data = user.code_academy_username
-
 
     settings_form.skills.data = [skill.id for skill in user.skills]
 
