@@ -10,14 +10,6 @@ from threading import Thread
 from werkzeug.security import safe_str_cmp
 from hackkings.utils import CodeAcademyQueue
 
-class RunLater(Thread):
-    def __init__(self, foo):
-        self.func = foo
-
-    def run(self):
-        self.func()
-
-
 DAY_DELTA = timedelta(1)
 
 class User(db.Model, UserMixin):
@@ -48,8 +40,22 @@ class User(db.Model, UserMixin):
         self.role = role
         self.bio = bio
 
-    def add_code_academy_username(self, code_academy_username):
+
+    def set_username(self, username):
+        self.username = username
+        db.session.commit()
+
+    def set_email(self, email):
+        self.username = email
+        db.session.commit()
+
+    def set_role(self, rol):
+        self.role = role
+        db.session.commit()
+
+    def set_code_academy_username(self, code_academy_username):
         self.code_academy_username = code_academy_username
+        db.session.commit()
 
     def get_code_academy_badges(self):
         if datetime.utcnow() > self.code_academy_fetch_time - DAY_DELTA:

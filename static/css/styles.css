@@ -16,6 +16,14 @@ form.logout input:hover {
 	color: #d9230f;
 }
 
+.skills {
+    padding: 10px;
+    text-align: center;
+}
+
+.bio {
+    padding: 10px;
+}
 img.avatar {
     height: 25px;
     width: 25px;
