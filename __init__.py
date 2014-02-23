@@ -1,14 +1,22 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from hackkings.constants import SITENAME
+from flask_login import LoginManager
 
 import os
 import sys
 
+login_manager = LoginManager()
+
 def configure_app(app):
+    from hackkings.models import User
     app.debug = True
     app.config['SECRET_KEY'] = 'hello'
-    hook_routes()
+    login_manager.init_app(app)
+    @login_manager.user_loader
+    def load_user(userid):
+        return User.find(userid)
+
 
 def configure_db(app):
     path = ''
@@ -38,3 +46,5 @@ db.create_all()
 import dummydata
 
 configure_app(app)
+
+hook_routes()
