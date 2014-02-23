@@ -5,7 +5,7 @@
         {% for project in project_list %}<div class="row">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">{{ project.name }} 
+              <h3 class="panel-title"><a href="/project/{{ project.id }}">{{ project.name }}</a> 
                 {% if project.state == 0 %}<span class="label label-default pull-right">Pending</span>
                 {% elif project.state == 1 %}<span class="label label-primary pull-right">On-going</span>{% endif %}
               </h3>
