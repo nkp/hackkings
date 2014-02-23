@@ -22,7 +22,7 @@
 		<div class="col-md-5">
 			<div class="panel-default">
 				<div class="panel-body">
-					{% if role == CONSTANTS.ROLES.DEVELOPER %}<a href="#" class="btn btn-success btn-block" role="button">Generate CV</a>{% elif role == CONSTANTS.ROLES.PROPOSER %}<a href="/project/new" class="btn btn-success btn-block" role="button">New Proposal</a>{% endif %}
+					{% if role == CONSTANTS.ROLES.DEVELOPER %}<a href="#" class="btn btn-success btn-block" disabled="disabled" role="button">Generate CV</a>{% elif role == CONSTANTS.ROLES.PROPOSER %}<a href="/project/new" class="btn btn-success btn-block" role="button">New Proposal</a>{% endif %}
 				</div>
 			</div>
 			<div class="panel panel-default">
