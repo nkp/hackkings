@@ -13,6 +13,7 @@ def configure_app(app):
     from hackkings.models import User
     app.debug = True
     app.config['SECRET_KEY'] = 'hello'
+    app.config['UPLOADED_PHOTOS_DEST'] = 'hackkings/static/uploads'
     login_manager.init_app(app)
     @login_manager.user_loader
     def load_user(userid):

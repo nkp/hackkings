@@ -7,3 +7,4 @@ from hackkings.views import login
 from hackkings.views import project_signup
 from hackkings.views import logout
 from hackkings.views import settings
+from hackkings.views import avatar
