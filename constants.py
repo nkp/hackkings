@@ -1,4 +1,6 @@
 SITENAME = 'hackathon app'
+BCRYPT_HASH_LENGTH = 60  
+BCRYPT_WORK_FACTOR  = 8
 
 class STATES:
     PENDING   = 0

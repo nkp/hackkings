@@ -1,13 +1,17 @@
 from hackkings import db
 from hackkings.models import Skill
 from hackkings.linkingtables import developer_project_link, skill_users_link
-from hackkings.constants import STATES, ROLES
+from hackkings.constants import STATES, ROLES, BCRYPT_HASH_LENGTH 
+from hackkings.utils import hash_password
+from flask_login import UserMixin
 
-class User(db.Model):
+from werkzeug.security import safe_str_cmp
+class User(db.Model, UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120), unique=True)
+    _password = db.Column(db.String(BCRYPT_HASH_LENGTH))
     name = db.Column(db.String(80), unique=False)
     avatar = db.Column(db.Text, unique=False)
     role = db.Column(db.Integer, unique=False) # If we can, limit this to the roles defined in constants
@@ -18,13 +22,32 @@ class User(db.Model):
     proposals = db.relationship('Project', backref='proposer', lazy='dynamic')
     messages_sent = db.relationship('Message', backref='sender', lazy='dynamic')
 
-    def __init__(self, username, email, name, avatar, role, bio):
+    def __init__(self, username, email, password, role, name, avatar, bio):
         self.username = username
         self.email = email
+        self.password = password
         self.name = name
         self.avatar = avatar
         self.role = role
         self.bio = bio
+
+    @classmethod
+    def create(cls, username, email, password, role):
+        new_user = User(username, email, password, role, None, None, None)
+        db.session.add(new_user)
+        db.session.commit()
+    
+    def get_password(self):
+        return self._password
+
+    def set_password(self, plain_password):
+        self._password = hash_password(plain_password)
+
+    password = property(fget=get_password, fset=set_password)
+
+    def check_password(self, plain_password):
+        password_hash = hash_password(plain_password, self.password)
+        return safe_str_cmp(password_hash, self.password)
 
     def __repr__(self):
         return '<User %r>' % self.username
