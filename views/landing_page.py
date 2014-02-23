@@ -4,7 +4,7 @@ from hackkings.models import User
 from hackkings.constants import ROLES
 
 @app.route('/user/<id:int>')
-def profile_page(id=None):
+def landing_page(id=None):
     if id == None:
         abort(404)
     user = User.find(id)
@@ -12,13 +12,13 @@ def profile_page(id=None):
         abort(404)
 
     landing_page_data = {}
-    if user.role == DEVELOPER:
+    if user.role == ROLES.DEVELOPER:
         landing_page_data = { 'avatar': user.avatar,
                               'username': user.username,
                               'ongoing_projects': user.get_ongoing_projects(),
                               'completed_projects': user.get_completed_projects(),
                               'suggested_projects': [] }
-    elif user.role == PROPOSER:
+    elif user.role == ROLES.PROPOSER:
         langing_page_data = { 'avatar': user.avatar,
                               'name': user.name, 
                               'ongoing_proposals': user.get_ongoing_proposals(),
