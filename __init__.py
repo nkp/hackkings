@@ -1,5 +1,5 @@
 from flask import Flask, redirect
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from hackkings.constants import SITENAME
 from flask_login import LoginManager
 
