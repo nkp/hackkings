@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
 from hackkings.constants import SITENAME
 from flask_login import LoginManager
@@ -16,6 +16,10 @@ def configure_app(app):
     @login_manager.user_loader
     def load_user(userid):
         return User.find(userid)
+    @login_manager.unauthorized_handler
+    def redirect_login():
+        return redirect('/login')
+
 
 
 def configure_db(app):
@@ -39,6 +43,7 @@ app = Flask(__name__)
 
 db = SQLAlchemy(app)
 configure_db(app)
+configure_jinja(app)
 import hackkings.models
 
 db.drop_all()
