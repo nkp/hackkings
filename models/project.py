@@ -18,9 +18,9 @@ class Project(db.Model):
     difficulty = db.Column(db.Integer, unique=False)
     attachments = db.relationship('Attachment', backref='project', lazy='dynamic')
 
-    def __init__(self, name,state,proposer,description,time_estimate,difficulty):
+    def __init__(self, name,proposer,description,time_estimate,difficulty):
         self.name = name
-        self.state = state
+        self.state = STATES.PENDING
         self.proposer = proposer
         self.description = description
         self.time_estimate = time_estimate
