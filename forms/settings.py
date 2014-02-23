@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, BooleanField, PasswordField, SubmitField
+from wtforms import TextField, BooleanField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired, ValidationError
 from hackkings.models import User
 
