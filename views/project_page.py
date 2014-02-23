@@ -2,7 +2,7 @@ from flask import render_template, current_app, abort
 from hackkings import app
 from hackkings.models import Project
 
-@app.route('/project/<id:int>')
+@app.route('/project/<int:id>')
 def project_page(id=None):
     if id == None:
         abort(404)         
