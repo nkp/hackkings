@@ -8,7 +8,6 @@ class Project(db.Model):
     __tablename__ = "project"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
-    completed = db.Column(db.Boolean, unique=False)
     #developers is back reffed
     state = db.Column(db.Integer, unique = False)
     proposer_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -19,9 +18,8 @@ class Project(db.Model):
     difficulty = db.Column(db.Integer, unique=False)
     attachments = db.relationship('Attachment', backref='project', lazy='dynamic')
 
-    def __init__(self, name,completed,state,proposer,description,time_estimate,difficulty):
+    def __init__(self, name,state,proposer,description,time_estimate,difficulty):
         self.name = name
-        self.completed = completed
         self.state = state
         self.proposer = proposer
         self.description = description
@@ -55,5 +53,6 @@ class Project(db.Model):
     def get_current_developers(self):
         return self.developers.query.all()
 
-    def get_all_current_projects(self):
-        return Project.filter(or_(state == STATES.ONGOING, state == STATES.PENDING)).all() # Could be made more efficient by selecting only required columns
+    @classmethod
+    def get_all_current_projects(cls):
+        return Project.query.filter(or_(cls.state == STATES.ONGOING, cls.state == STATES.PENDING)).all() # Could be made more efficient by selecting only required columns

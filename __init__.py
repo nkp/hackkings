@@ -29,11 +29,11 @@ def hook_routes():
 
 app = Flask(__name__)
 
-configure(app)
-
 db = SQLAlchemy(app)
 import hackkings.models
 
 db.drop_all()
 db.create_all()
 import dummydata
+
+configure(app)
