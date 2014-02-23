@@ -12,6 +12,8 @@ class SignupForm(Form):
     submit = SubmitField()
 
     def validate_username(form, field):
+        if len(field.data) == 0:
+            raise ValidationError('That\'s not a good username!')
         if User.find_by_username(field.data):
             raise ValidationError('That username has already been taken')
 
