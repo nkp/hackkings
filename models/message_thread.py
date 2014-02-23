@@ -15,6 +15,15 @@ class MessageThread(db.Model):
 
     def __repr__(self):
         return '<Thread %r>' % self.id 
+   
+    @classmethod
+    def create(cls, new_members):
+        new_thread = MessageThread()
+        for member in new_members:
+            new_thread.members.append(member)
+        db.session.add(new_thread)
+        db.session.commit()
+        return new_thread
     
     @classmethod
     def find(cls, id):
