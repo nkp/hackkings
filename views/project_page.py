@@ -18,4 +18,4 @@ def project_page(id=None):
                      'skills_needed': project.get_skills(),
                      'currently_working': project.get_current_developers() }
 
-    return render_template('project.html', project_data)
+    return render_template('project.html', project=project_data)
