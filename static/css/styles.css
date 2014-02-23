@@ -4,6 +4,12 @@ html {
 
 body {
     padding-top: 50px;
+    background: url('/static/images/bg.jpg') fixed ;
+    background-size: cover;
+}
+
+.jumbotron h1 {
+    padding-bottom: 40px;
 }
 
 form.logout input {
@@ -43,6 +49,10 @@ img.big {
     margin: 0 10px;
 }
 
+
+.jumbotron {
+    text-align: center;
+}
 
 a.nope, a.nope:hover {
     color: #333333;
