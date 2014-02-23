@@ -12,6 +12,7 @@ class Project(db.Model):
     state = db.Column(db.Integer, unique = False)
     proposer_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     description = db.Column(db.Text, unique=False)
+    # proposer is back reffed
     #skills are back reffed
     #time in hours
     time_estimate = db.Column(db.Integer, unique=False)
@@ -31,6 +32,7 @@ class Project(db.Model):
         new_project = Project( name, proposer, description, time_estimate, difficulty)
         db.session.add(new_project)
         db.session.commit()
+        return new_project
 
     def __repr__(self):
         return '<Project %r>' % self.type
@@ -53,8 +55,9 @@ class Project(db.Model):
                 self.state = STATES.PENDING
             db.session.commit()
 
-    def find(self, id):
-        return Project.filter_by(id = id).first()
+    @classmethod
+    def find(cls, id):
+        return Project.query.filter_by(id = id).first()
 
     def get_skills(self):
         return self.skills.all()
