@@ -62,7 +62,7 @@
         });
         badges.find('div.badge').each(function(){
           str = (String)($(this).css('background-image'));
-          str = str.replace("localhost:5000","codecademy.com").replace("url","").replace("(","").replace(")","");
+          str = str.replace("localhost:5000","codecademy.com").replace("127.0.0.1:5000","codecademy.com").replace("url","").replace("(","").replace(")","");
           var img = $('<img>'); //Equivalent: $(document.createElement('img'))
           img.attr('src', str);
           img.appendTo($(this));

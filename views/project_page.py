@@ -29,6 +29,7 @@ def project_page(id=None):
         abort(404)
     
     project_data = { 'name': project.name,
+                     'id': project.id,
                      'proposer': project.proposer,
                      'difficulty': project.difficulty,
                      'time_estimate': project.time_estimate,
