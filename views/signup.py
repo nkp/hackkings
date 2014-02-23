@@ -3,6 +3,7 @@ from flask import render_template, current_app, redirect
 from hackkings import app
 from hackkings.constants import ROLES
 from hackkings.forms import SignupForm
+from hackkings.models import User
 from flask_login import login_user, current_user
 
 @app.route('/signup', methods=('GET', 'POST'))
