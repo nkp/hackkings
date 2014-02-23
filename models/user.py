@@ -2,7 +2,7 @@ from hackkings import db
 from hackkings.models import Skill
 from hackkings.linkingtables import developer_project_link, skill_users_link
 from hackkings.constants import STATES, ROLES, BCRYPT_HASH_LENGTH 
-from hackkings.utils import hash_password
+from hackkings.utils import hash_password, check_password
 from flask_login import UserMixin
 
 from werkzeug.security import safe_str_cmp
@@ -46,6 +46,7 @@ class User(db.Model, UserMixin):
     password = property(fget=get_password, fset=set_password)
 
     def check_password(self, plain_password):
+        return check_password(self.password, plain_password)
         password_hash = hash_password(plain_password, self.password)
         return safe_str_cmp(password_hash, self.password)
 
