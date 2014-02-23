@@ -6,7 +6,8 @@
     <div class="col-md-offset-2 col-md-8">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h1>{% if user.name %}{{user.name}}{% else %}{{user.username}}{% endif %}</h1>
+          <img src="{{user.avatar}}" class="avatar big"/>
+          <h1 class"username">{% if user.name %}{{user.name}}{% else %}{{user.username}}{% endif %}</h1>
         </div>
         {% if user.role == CONSTANTS.ROLES.DEVELOPER %}
           <div class="skills">
