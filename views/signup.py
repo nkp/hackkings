@@ -1,12 +1,13 @@
-from flask import render_template, current_app
+from flask import render_template, current_app, redirect
 
 from hackkings import app
 from hackkings.constants import ROLES
 from hackkings.forms import SignupForm
+from flask_login import login_user
 
-@app.route('/signup')
-@app.route('/signup/<role>')
-def signup(role=None, methods=('GET', 'POST')):
+@app.route('/signup', methods=('GET', 'POST'))
+@app.route('/signup/<role>', methods=('GET', 'POST'))
+def signup(role=None):
     print 'signup'
     signup_form = SignupForm()
     signup_form.role.choices = [(ROLES.DEVELOPER, 'Developer'), (ROLES.PROPOSER, 'Proposer')]
@@ -14,7 +15,7 @@ def signup(role=None, methods=('GET', 'POST')):
     if signup_form.validate_on_submit():
         User.create(signup_form.username.data, signup_form.email.data, 
                     signup_form.password.data, signup_form.role.data)
-        return 201, 'Success'
+        return redirect('/login')
     if not role:
         return render_template('signup.html', signup_form = signup_form)
     role = role.lower().strip()

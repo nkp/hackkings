@@ -29,12 +29,15 @@ class Project(db.Model):
     def __repr__(self):
         return '<Project %r>' % self.type
 
-    def add_developer(self, id):
+    def add_developer_by_id(self, id):
         dev = User.query.filter_by(id = id).first()
         if dev != None:
-            self.developers.append(dev)
-            self.state = STATES.ONGOING
-            db.session.commit()
+            self.add_developer(dev)
+
+    def add_developer(self, dev):
+        self.developers.append(dev)
+        self.state = STATES.ONGOING
+        db.session.commit()
 
     def remove_developer(self, id):
         dev = self.developers.query.filter_by(id = id).first()
