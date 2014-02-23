@@ -18,7 +18,7 @@ db.session.commit()
 map(andrew.add_skill, skillObjects)
 map(nic.add_skill, skillObjects)
 map(Ilija.add_skill, skillObjects)
-names = ["Project", "Awesome project", "Even awesomer project", "Super awesome project","Super duper awesomer project"]
+names = ["project", "awesome project", "even awesomer project", "super awesome project","super duper awesomer project"]
 for name in names:
     project = Project(name, sachin, "some awesome project description", "9000", "0")
     project.add_skill(skillObjects[1])
