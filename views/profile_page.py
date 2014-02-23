@@ -30,4 +30,4 @@ def profile_page(id=None):
     else
         abort(400)
 
-    return render_template('profile.html', profile_data)
+    return render_template('profile.html', **profile_data)

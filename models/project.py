@@ -55,3 +55,7 @@ class Project(db.Model):
 
     def get_all_current_projects(self):
         return Project.filter(or_(state == STATES.ONGOING, state == STATES.PENDING)).all() # Could be made more efficient by selecting only required columns
+   
+    def get_all_pending_projects(self):
+        return Project.filter(state == STATES.PENDING).all()
+

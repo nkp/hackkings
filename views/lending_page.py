@@ -26,7 +26,10 @@ def profile_page(id=None):
                               'completed_proposals': user.get_completed_proposals() }
     else
         abort(400)
+    
+    def get_suggestions():
+        
 
-    return render_template('landing_page.html', landing_page_data)
+    return render_template('landing_page.html', **landing_page_data)
     
 
