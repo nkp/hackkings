@@ -1,3 +1,4 @@
+from hackkings import app
 from flask_login import logout_user, current_user
 
 @app.route('/logout', methods=('POST'))
