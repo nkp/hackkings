@@ -7,7 +7,7 @@
       <div class="panel panel-info">
         <div class="panel-heading">
           <img src="{{user.avatar}}" class="avatar big"/>
-          <h1 class"username">{% if user.name %}{{user.name}}{% else %}{{user.username}}{% endif %}</h1>
+          <h1 class="username">{% if user.name %}{{user.name}}{% else %}{{user.username}}{% endif %}</h1>
         </div>
         {% if user.role == CONSTANTS.ROLES.DEVELOPER %}
           <div class="skills">
